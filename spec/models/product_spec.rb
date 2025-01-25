@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Product, type: :model do
-  let(:product) { FactoryBot.build(:product) }
+  let(:category) { FactoryBot.create(:category) }
+  let(:product) { FactoryBot.build(:product, category: category) }
 
   context 'Validations' do
     it 'is valid with name, description, price present' do
@@ -24,11 +25,11 @@ RSpec.describe Product, type: :model do
     end
   end
 
-  # context 'Associations' do
-  #   it 'belongs to a category' do
-  #     expect(product.category).to eq(category)
-  #   end
-  # end
+  context 'Associations' do
+    it 'belongs to a category' do
+      expect(product.category).to eq(category)
+    end
+  end
 
   context 'Should not be valid' do
     it 'when name is not present' do
@@ -53,5 +54,5 @@ RSpec.describe Product, type: :model do
       expect(product).not_to be_valid
     end
   end
-  
+
 end

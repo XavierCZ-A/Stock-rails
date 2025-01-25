@@ -1,0 +1,28 @@
+<nav class="flex justify-between items-center mb-6">
+  <div class="flex items-center space-x-2" role="search">
+    <div class="relative max-w-md w-full">
+      <input
+        type="text"
+        placeholder="Buscar..."
+        class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-full focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors duration-300"
+        />
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <%= tabler_icon('search', size: '20', class: "mr-2" ) %>
+      </div>
+    </div>
+    <button class="flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3">
+      <%= tabler_icon('search', size: '20', class: "mr-2" ) %>
+      Buscar
+    </button>
+  </div>
+  <div class="flex items-center space-x-2">
+    <button class="flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3">
+      <%= tabler_icon('filter', size: '20', class: "mr-2" ) %>
+      Filtrar
+    </button>
+    <%= link_to new_product_path, class: 'flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3' do %>
+      <%= tabler_icon('plus', size: '20', class: "mr-2" ) %>
+      Agregar producto
+    <% end %>
+  </div>
+</nav>

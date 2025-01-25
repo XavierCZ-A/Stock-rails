@@ -5,6 +5,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @products = Product.all
+    @total_products_price = Product.total_products_price
   end
 
   # GET /products/1 or /products/1.json
@@ -24,7 +25,6 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      @product.size_ids = product_params[:size_ids]
       redirect_to @product, notice: "Product was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -59,6 +59,6 @@ class ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.expect(product: [:name, :description, :price, size_ids: []])
+    params.expect(product: [:name, :description, :price, :category_id, size_ids: []])
   end
 end

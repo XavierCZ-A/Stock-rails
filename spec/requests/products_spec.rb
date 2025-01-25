@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Products", type: :request do
+  let(:category) { FactoryBot.create(:category) }
   let(:product) { FactoryBot.create(:product) }
 
   describe 'GET /products' do
@@ -19,14 +20,15 @@ RSpec.describe "Products", type: :request do
 
   describe 'POST /products' do
     context 'with valid parameters' do
+      category = FactoryBot.create(:category) # Crea una categoría
       it 'creates a new Product' do
         expect {
-          post products_path, params: { product: FactoryBot.attributes_for(:product) }
+          post products_path, params: { product: FactoryBot.attributes_for(:product).merge(category_id: category.id) }
         }.to change(Product, :count).by(1)
       end
 
       it 'redirects to the created product' do
-        post products_path, params: { product: FactoryBot.attributes_for(:product) }
+        post products_path, params: { product: FactoryBot.attributes_for(:product).merge(category_id: category.id) }
         expect(response).to redirect_to(product_path(Product.last))
       end
     end
