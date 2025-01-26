@@ -109,6 +109,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rack-test (v2.2.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rackup (v2.2.1, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails (v8.0.1, ruby-3.4.1-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="rails-controller-testing (v1.0.5, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-dom-testing (v2.2.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rails-html-sanitizer (v1.6.2, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="railties (v8.0.1, ruby-3.4.1-p0) [gem]" level="application" />
@@ -139,6 +140,7 @@
     <orderEntry type="library" scope="PROVIDED" name="sshkit (v1.23.2, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stimulus-rails (v1.3.4, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="stringio (v3.1.2, ruby-3.4.1-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="tabler_icons_ruby (v3.26.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tailwindcss-rails (v3.3.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tailwindcss-ruby (v4.0.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.3.2, ruby-3.4.1-p0) [gem]" level="application" />
@@ -250,107 +252,108 @@
   </component>
   <component name="RailsPaths" isManagedAutomatically="true">
     <entry key="app">
-      <value>file://$MODULE_DIR$/../Stock\app</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app</value>
     </entry>
     <entry key="app/assets">
-      <value>file://$MODULE_DIR$/../Stock\app/assets</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/assets</value>
     </entry>
     <entry key="app/channels">
-      <value>file://$MODULE_DIR$/../Stock\app/channels</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/channels</value>
     </entry>
     <entry key="app/controllers">
-      <value>file://$MODULE_DIR$/../Stock\app/controllers</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/controllers</value>
     </entry>
     <entry key="app/helpers">
-      <value>file://$MODULE_DIR$/../Stock\app/helpers</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/helpers</value>
     </entry>
     <entry key="app/mailers">
-      <value>file://$MODULE_DIR$/../Stock\app/mailers</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/mailers</value>
     </entry>
     <entry key="app/models">
-      <value>file://$MODULE_DIR$/../Stock\app/models</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/models</value>
     </entry>
     <entry key="app/views">
-      <value>file://$MODULE_DIR$/../Stock\app/views</value>
+      <value>file://$MODULE_DIR$/../Stock-app\app/views</value>
     </entry>
     <entry key="config">
-      <value>file://$MODULE_DIR$/../Stock\config</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config</value>
     </entry>
     <entry key="config/cable">
-      <value>file://$MODULE_DIR$/../Stock\config/cable.yml</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/cable.yml</value>
     </entry>
     <entry key="config/cache">
-      <value>file://$MODULE_DIR$/../Stock\config/cache.yml</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/cache.yml</value>
     </entry>
     <entry key="config/database">
-      <value>file://$MODULE_DIR$/../Stock\config/database.yml</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/database.yml</value>
     </entry>
     <entry key="config/environment">
-      <value>file://$MODULE_DIR$/../Stock\config/environment.rb</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/environment.rb</value>
     </entry>
     <entry key="config/environments">
-      <value>file://$MODULE_DIR$/../Stock\config/environments</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/environments</value>
     </entry>
     <entry key="config/initializers">
-      <value>file://$MODULE_DIR$/../Stock\config/initializers</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/initializers</value>
     </entry>
     <entry key="config/locales">
-      <value>file://$MODULE_DIR$/../Stock\config/locales</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/locales</value>
     </entry>
     <entry key="config/routes">
-      <value>file://$MODULE_DIR$/../Stock\config/routes</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/routes</value>
     </entry>
     <entry key="config/routes.rb">
-      <value>file://$MODULE_DIR$/../Stock\config/routes.rb</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/routes.rb</value>
     </entry>
     <entry key="config/solid_cache">
-      <value>file://$MODULE_DIR$/../Stock\config/solid_cache.yml</value>
+      <value>file://$MODULE_DIR$/../Stock-app\config/solid_cache.yml</value>
     </entry>
     <entry key="db">
-      <value>file://$MODULE_DIR$/../Stock\db</value>
+      <value>file://$MODULE_DIR$/../Stock-app\db</value>
     </entry>
     <entry key="db/migrate">
-      <value>file://$MODULE_DIR$/../Stock\db/migrate</value>
+      <value>file://$MODULE_DIR$/../Stock-app\db/migrate</value>
     </entry>
     <entry key="db/seeds.rb">
-      <value>file://$MODULE_DIR$/../Stock\db/seeds.rb</value>
+      <value>file://$MODULE_DIR$/../Stock-app\db/seeds.rb</value>
     </entry>
     <entry key="lib">
-      <value>file://$MODULE_DIR$/../Stock\lib</value>
+      <value>file://$MODULE_DIR$/../Stock-app\lib</value>
     </entry>
     <entry key="lib/assets">
-      <value>file://$MODULE_DIR$/../Stock\lib/assets</value>
+      <value>file://$MODULE_DIR$/../Stock-app\lib/assets</value>
     </entry>
     <entry key="lib/tasks">
-      <value>file://$MODULE_DIR$/../Stock\lib/tasks</value>
+      <value>file://$MODULE_DIR$/../Stock-app\lib/tasks</value>
     </entry>
     <entry key="lib/templates">
-      <value>file://$MODULE_DIR$/../Stock\lib/templates</value>
+      <value>file://$MODULE_DIR$/../Stock-app\lib/templates</value>
     </entry>
     <entry key="log">
-      <value>file://$MODULE_DIR$/../Stock\log/development.log</value>
+      <value>file://$MODULE_DIR$/../Stock-app\log/development.log</value>
     </entry>
     <entry key="public">
-      <value>file://$MODULE_DIR$/../Stock\public</value>
+      <value>file://$MODULE_DIR$/../Stock-app\public</value>
     </entry>
     <entry key="public/javascripts">
-      <value>file://$MODULE_DIR$/../Stock\public/javascripts</value>
+      <value>file://$MODULE_DIR$/../Stock-app\public/javascripts</value>
     </entry>
     <entry key="public/stylesheets">
-      <value>file://$MODULE_DIR$/../Stock\public/stylesheets</value>
+      <value>file://$MODULE_DIR$/../Stock-app\public/stylesheets</value>
     </entry>
     <entry key="test/mailers/previews">
+      <value>file://$MODULE_DIR$/spec/mailers/previews</value>
       <value>file://$MODULE_DIR$/test/mailers/previews</value>
-      <value>file://$MODULE_DIR$/../Stock\test/mailers/previews</value>
+      <value>file://$MODULE_DIR$/../Stock-app\test/mailers/previews</value>
     </entry>
     <entry key="tmp">
-      <value>file://$MODULE_DIR$/../Stock\tmp</value>
+      <value>file://$MODULE_DIR$/../Stock-app\tmp</value>
     </entry>
     <entry key="vendor">
-      <value>file://$MODULE_DIR$/../Stock\vendor</value>
+      <value>file://$MODULE_DIR$/../Stock-app\vendor</value>
     </entry>
     <entry key="vendor/assets">
-      <value>file://$MODULE_DIR$/../Stock\vendor/assets</value>
+      <value>file://$MODULE_DIR$/../Stock-app\vendor/assets</value>
     </entry>
   </component>
   <component name="RakeTasksCache-v2">
