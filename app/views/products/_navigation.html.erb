@@ -16,10 +16,10 @@
     </button>
   </div>
   <div class="flex items-center space-x-2">
-    <button class="flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3">
-      <%= tabler_icon('filter', size: '20', class: "mr-2" ) %>
-      Filtrar
-    </button>
+    <%= link_to new_product_stock_path, class: 'flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3' do %>
+      <%= tabler_icon('stack-3', size: '20', class: "mr-2" ) %>
+      Agregar stock
+    <% end %>
     <%= link_to new_product_path, class: 'flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3' do %>
       <%= tabler_icon('plus', size: '20', class: "mr-2" ) %>
       Agregar producto

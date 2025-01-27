@@ -29,7 +29,7 @@ RSpec.describe "Products", type: :request do
 
       it 'redirects to the created product' do
         post products_path, params: { product: FactoryBot.attributes_for(:product).merge(category_id: category.id) }
-        expect(response).to redirect_to(product_path(Product.last))
+        expect(response).to redirect_to(products_path)
       end
     end
 

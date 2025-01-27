@@ -69,3 +69,4 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem "tailwindcss-ruby", "~> 4.0"
 gem "tailwindcss-rails", "~> 3.3"
 gem "tabler_icons_ruby", "~> 3.26"
+gem 'pagy', '~> 9.3'

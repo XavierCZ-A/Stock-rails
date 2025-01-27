@@ -4,8 +4,10 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
     @total_products_price = Product.total_products_price
+    @total_stock = ProductStock.total_stock
+    @pagy, @products = pagy(Product.all)
+    # @product_stocks = ProductStock.all
   end
 
   # GET /products/1 or /products/1.json
@@ -25,7 +27,7 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product, notice: "Product was successfully created."
+      redirect_to products_path, notice: "Product was successfully created."
     else
       render :new, status: :unprocessable_entity
     end

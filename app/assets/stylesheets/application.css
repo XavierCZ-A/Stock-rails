@@ -8,3 +8,61 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.pagy {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.pagy a {
+    font-weight: bold;
+    border: 2px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 8px;
+    text-align: center;
+    transition: all 0.3s ease;
+    color: rgb(17, 121, 249);
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.pagy a:hover {
+    background-color: rgb(17, 121, 249);
+    color: white;
+    border-color: rgb(17, 121, 249);
+}
+
+.pagy a:focus {
+    outline: none;
+    box-shadow: 0 0 5px 2px rgba(17, 121, 249, 0.6);
+}
+
+.pagy a[aria-label="Previous"][aria-disabled="true"],
+.pagy a[aria-label="Next"][aria-disabled="true"] {
+    background-color: #f0f0f0;
+    color: #aaa;
+    border-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.pagy a[aria-label="Previous"]:not([aria-disabled="true"]),
+.pagy a[aria-label="Next"]:not([aria-disabled="true"]) {
+    background-color: rgb(17, 121, 249);
+    color: white;
+    border-color: rgb(17, 121, 249);
+}
+
+.pagy .current {
+    background-color: rgb(17, 121, 249);
+    color: white;
+    border-color: rgb(17, 121, 249);
+    font-weight: bold;
+}
+
+.pagy .current:hover {
+    background-color: rgb(8, 96, 200);
+    border-color: rgb(8, 96, 200);
+}
