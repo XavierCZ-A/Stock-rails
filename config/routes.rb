@@ -3,6 +3,11 @@ Rails.application.routes.draw do
   resources :categories
   resources :products
   resources :sizes
+
+  namespace :authentication, path: "", as: "" do
+    resources :users, only: [:create, :new]
+    resources :sessions, only: [:create, :new]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
