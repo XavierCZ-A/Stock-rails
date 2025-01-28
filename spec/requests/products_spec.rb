@@ -63,4 +63,11 @@ RSpec.describe "Products", type: :request do
     end
   end
 
+  describe "Search /products" do
+    it "should search products by name" do
+      get products_path, params: { query_text: product.name }
+      expect(response).to be_successful
+    end
+  end
+
 end

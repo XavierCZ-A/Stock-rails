@@ -7,7 +7,10 @@ class ProductsController < ApplicationController
     @total_products_price = Product.total_products_price
     @total_stock = ProductStock.total_stock
     @pagy, @products = pagy(Product.all)
-    # @product_stocks = ProductStock.all
+
+    if params[:query_text].present?
+      @products = Product.search_full_text(params[:query_text])
+    end
   end
 
   # GET /products/1 or /products/1.json
