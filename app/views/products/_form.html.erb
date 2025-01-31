@@ -26,10 +26,6 @@
     <%= form.text_field :price, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": product.errors[:price].none?, "border-red-400 focus:outline-red-600": product.errors[:price].any? }] %>
   </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-
   <div class="flex flex-wrap gap-4 mt-2">
     <%= form.collection_check_boxes :size_ids, @sizes, :id, :name, include_hidden: false do |b| %>
       <div class="flex items-center">
@@ -39,13 +35,29 @@
         <%= b.object.name %>
       </span>
         <% end %>
-    </div>
+      </div>
     <% end %>
   </div>
 
   <div class="relative z-0 w-full my-10 group">
     <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Selecciona una categoria" }, { id: 'floating_category_id', class: "block py-2.5 px-0 w-full text-sm text-black bg-transparent border-0 border-b border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer" } %>
     <%= form.label :category_id, for: 'floating_category_id', class: "peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6" %>
+  </div>
+
+
+  <div class="inline">
+    <p>
+      Your product requires sizes?
+    </p>
+    <%= link_to new_product_path, class: 'flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3' do %>
+      <%= tabler_icon('plus', size: '20', class: "mr-2") %>
+      Agregar producto
+    <% end %>
+  </div>
+
+
+  <div class="inline">
+    <%= form.submit class: "flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3" %>
   </div>
 
 <% end %>

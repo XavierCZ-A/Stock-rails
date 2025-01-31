@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "dashboard/index"
   resources :product_stocks
   resources :categories
   resources :products

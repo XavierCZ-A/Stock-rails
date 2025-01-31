@@ -1,15 +1,24 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :set_sizes, only: %i[ new create edit update ]
+  layout 'product'
+
 
   # GET /products or /products.json
   def index
-    @total_products_price = Product.total_products_price
-    @total_stock = ProductStock.total_stock
     @pagy, @products = pagy(Product.all)
 
     if params[:query_text].present?
       @products = Product.search_full_text(params[:query_text])
+    end
+    if params[:category_id].present?
+      @products = Product.where(category_id: params[:category_id])
+    end
+    if params[:stock_min].present?
+      @products = Product.joins(:product_stock).where("product_stocks.quantity >= ?", params[:stock_min])
+    end
+    if params[:price_min].present?
+      @products = Product.where("price >= ?", params[:price_min])
     end
   end
 

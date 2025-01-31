@@ -1,6 +1,6 @@
 class ProductStocksController < ApplicationController
   before_action :set_product_stock, only: %i[ show edit update destroy ]
-
+  layout "product"
   # GET /product_stocks or /product_stocks.json
   def index
     @product_stocks = ProductStock.all
