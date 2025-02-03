@@ -1,0 +1,4 @@
+<div class="notification bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-2 rounded-md">
+  <p><strong>📢 Alerta:</strong> <%= notification.message %></p>
+  <p class="text-sm text-gray-600"><%= time_ago_in_words(notification.created_at) %> ago</p>
+</div>

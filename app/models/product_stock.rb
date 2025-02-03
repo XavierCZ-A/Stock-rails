@@ -1,42 +1,32 @@
 class ProductStock < ApplicationRecord
-  belongs_to :product
+  after_save :check_stock_level
 
+  belongs_to :product
+  has_many :notifications
+
+  validates :quantity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
 
   scope :total_stock, -> { sum(:quantity) }
 
-  # def self.total_stock
-  #   sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_product(product_id)
-  #   where(product_id: product_id).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_category(category_id)
-  #   joins(product: :category).where(categories: { id: category_id }).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_category_name(category_name)
-  #   joins(product: :category).where(categories: { name: category_name }).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_product_name(product_name)
-  #   joins(:product).where(products: { name: product_name }).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_product_name_and_category_name(product_name, category_name)
-  #   joins(product: :category).where(products: { name: product_name }, categories: { name: category_name }).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_product_id_and_category_id(product_id, category_id)
-  #   joins(product: :category).where(products: { id: product_id }, categories: { id: category_id }).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_product_id(product_id)
-  #   where(product_id: product_id).sum(:quantity)
-  # end
-  #
-  # def self.total_stock_by_category_id(category_id)
-  #   joins
-  # end
+  def low_stock?
+    quantity < min_stock
+  end
+
+  def notificated?
+    notification_stock
+  end
+
+  def check_stock_level
+    puts "🔥 Verificando stock bajo..."  # Esto se imprimirá en Rails Console
+    if notificated?
+      puts "🔥 Verificando si acepta notificaciones..."
+      if low_stock?
+        puts "⚠️ ¡Stock bajo detectado! Creando notificación..."
+        Notification.create(
+          product_stock: self,
+          message: "¡Alerta! El producto #{product.name} tiene un stock bajo (#{quantity} unidades)"
+        )
+      end
+    end
+  end
 end

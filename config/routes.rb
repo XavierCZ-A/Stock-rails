@@ -5,6 +5,12 @@ Rails.application.routes.draw do
   resources :products
   resources :sizes
 
+  resources :notifications, only: [:index, :show] do
+    member do
+      patch :mark_as_read
+    end
+  end
+
   namespace :authentication, path: "", as: "" do
     resources :users, only: [:create, :new]
     resources :sessions, only: [:create, :new]

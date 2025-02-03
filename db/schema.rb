@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_28_055312) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_01_090816) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -18,6 +18,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_055312) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string "message"
+    t.boolean "read", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "product_stock_id", null: false
+    t.index ["product_stock_id"], name: "index_notifications_on_product_stock_id"
   end
 
   create_table "product_sizes", force: :cascade do |t|
@@ -34,6 +43,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_055312) do
     t.bigint "product_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "notification_stock", default: false
+    t.integer "min_stock"
     t.index ["product_id"], name: "index_product_stocks_on_product_id"
   end
 
@@ -63,6 +74,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_28_055312) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "notifications", "product_stocks"
   add_foreign_key "product_sizes", "products"
   add_foreign_key "product_sizes", "sizes"
   add_foreign_key "product_stocks", "products"

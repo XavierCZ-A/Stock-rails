@@ -1,3 +1,5 @@
+require 'csv'
+
 class Product < ApplicationRecord
   include PgSearch::Model
 
@@ -16,4 +18,14 @@ class Product < ApplicationRecord
   }
 
   scope :total_products_price, -> { sum(:price) }
+
+  def self.to_csv
+    products = all
+    CSV.generate do |csv|
+      csv << column_names
+      products.each do |product|
+        csv << product.attributes.values_at(*column_names)
+      end
+    end
+  end
 end

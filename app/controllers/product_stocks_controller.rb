@@ -53,6 +53,6 @@ class ProductStocksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_stock_params
-    params.expect(product_stock: [:quantity, :product_id])
+    params.expect(product_stock: [:quantity, :product_id, :notification_stock, :min_stock])
   end
 end

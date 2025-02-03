@@ -55,6 +55,7 @@
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.5, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="connection_pool (v2.5.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, ruby-3.4.1-p0) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="csv (v3.3.2, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.4.1, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.10.0, ruby-3.4.1-p0) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="diff-lcs (v1.5.1, ruby-3.4.1-p0) [gem]" level="application" />
@@ -181,6 +182,7 @@
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
+        <option value="factory_bot:model" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
@@ -190,7 +192,23 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pg_search:migration:dmetaphone" />
+        <option value="pg_search:migration:multisearch" />
         <option value="resource" />
+        <option value="rspec:channel" />
+        <option value="rspec:controller" />
+        <option value="rspec:feature" />
+        <option value="rspec:generator" />
+        <option value="rspec:helper" />
+        <option value="rspec:install" />
+        <option value="rspec:job" />
+        <option value="rspec:mailbox" />
+        <option value="rspec:mailer" />
+        <option value="rspec:model" />
+        <option value="rspec:request" />
+        <option value="rspec:scaffold" />
+        <option value="rspec:system" />
+        <option value="rspec:view" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="script" />
@@ -204,10 +222,18 @@
         <option value="task" />
         <option value="test_unit:authentication" />
         <option value="test_unit:channel" />
+        <option value="test_unit:controller" />
         <option value="test_unit:generator" />
+        <option value="test_unit:helper" />
         <option value="test_unit:install" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:job" />
         <option value="test_unit:mailbox" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
+        <option value="test_unit:system" />
       </list>
     </option>
     <option name="myGenerators">
@@ -223,6 +249,7 @@
         <option value="erb:controller" />
         <option value="erb:mailer" />
         <option value="erb:scaffold" />
+        <option value="factory_bot:model" />
         <option value="generator" />
         <option value="helper" />
         <option value="integration_test" />
@@ -232,7 +259,23 @@
         <option value="mailer" />
         <option value="migration" />
         <option value="model" />
+        <option value="pg_search:migration:dmetaphone" />
+        <option value="pg_search:migration:multisearch" />
         <option value="resource" />
+        <option value="rspec:channel" />
+        <option value="rspec:controller" />
+        <option value="rspec:feature" />
+        <option value="rspec:generator" />
+        <option value="rspec:helper" />
+        <option value="rspec:install" />
+        <option value="rspec:job" />
+        <option value="rspec:mailbox" />
+        <option value="rspec:mailer" />
+        <option value="rspec:model" />
+        <option value="rspec:request" />
+        <option value="rspec:scaffold" />
+        <option value="rspec:system" />
+        <option value="rspec:view" />
         <option value="scaffold" />
         <option value="scaffold_controller" />
         <option value="script" />
@@ -246,10 +289,18 @@
         <option value="task" />
         <option value="test_unit:authentication" />
         <option value="test_unit:channel" />
+        <option value="test_unit:controller" />
         <option value="test_unit:generator" />
+        <option value="test_unit:helper" />
         <option value="test_unit:install" />
+        <option value="test_unit:integration" />
+        <option value="test_unit:job" />
         <option value="test_unit:mailbox" />
+        <option value="test_unit:mailer" />
+        <option value="test_unit:model" />
         <option value="test_unit:plugin" />
+        <option value="test_unit:scaffold" />
+        <option value="test_unit:system" />
       </list>
     </option>
   </component>
@@ -539,6 +590,16 @@
               <RakeTaskImpl description="Truncate all/specified *.log files in log/ to zero bytes (specify which logs with LOGS=test,development)" fullCommand="log:clear" id="clear" />
             </subtasks>
           </RakeTaskImpl>
+          <RakeTaskImpl id="pg_search">
+            <subtasks>
+              <RakeTaskImpl id="multisearch">
+                <subtasks>
+                  <RakeTaskImpl description="Rebuild PgSearch multisearch records for a given model" fullCommand="pg_search:multisearch:rebuild[model,schema]" id="rebuild[model,schema]" />
+                  <RakeTaskImpl description="" fullCommand="pg_search:multisearch:rebuild" id="rebuild" />
+                </subtasks>
+              </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl id="solid_cable">
             <subtasks>
               <RakeTaskImpl description="Copy over the schema and set cable adapter for Solid Cable" fullCommand="solid_cable:install" id="install" />
@@ -554,6 +615,18 @@
             <subtasks>
               <RakeTaskImpl description="Install Solid Queue" fullCommand="solid_queue:install" id="install" />
               <RakeTaskImpl description="start solid_queue supervisor to dispatch and process jobs" fullCommand="solid_queue:start" id="start" />
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl description="Run all specs in spec directory (excluding plugin specs)" fullCommand="spec" id="spec" />
+          <RakeTaskImpl id="spec">
+            <subtasks>
+              <RakeTaskImpl description="Run the code examples in spec/helpers" fullCommand="spec:helpers" id="helpers" />
+              <RakeTaskImpl description="Run the code examples in spec/models" fullCommand="spec:models" id="models" />
+              <RakeTaskImpl description="Run the code examples in spec/requests" fullCommand="spec:requests" id="requests" />
+              <RakeTaskImpl description="Run the code examples in spec/routing" fullCommand="spec:routing" id="routing" />
+              <RakeTaskImpl description="Run the code examples in spec/views" fullCommand="spec:views" id="views" />
+              <RakeTaskImpl description="" fullCommand="spec:prepare" id="prepare" />
+              <RakeTaskImpl description="" fullCommand="spec:statsetup" id="statsetup" />
             </subtasks>
           </RakeTaskImpl>
           <RakeTaskImpl description="Report code statistics (KLOCs, etc) from the application or engine" fullCommand="stats" id="stats" />

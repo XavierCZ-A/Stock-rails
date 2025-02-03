@@ -1,4 +1,4 @@
-<%= form_with(model: product_stock, class: "contents") do |form| %>
+<%= form_with(model: product_stock, class: "contents", data: { controller: "nested-fields" }) do |form| %>
   <% if product_stock.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
       <h2><%= pluralize(product_stock.errors.count, "error") %> prohibited this product_stock from being saved:</h2>
@@ -13,15 +13,31 @@
 
   <div class="my-5">
     <%= form.label :quantity %>
-    <%= form.number_field :quantity, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product_stock.errors[:quantity].none?, "border-red-400 focus:outline-red-600": product_stock.errors[:quantity].any?}] %>
+    <%= form.number_field :quantity, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": product_stock.errors[:quantity].none?, "border-red-400 focus:outline-red-600": product_stock.errors[:quantity].any? }] %>
   </div>
 
   <div class="my-5">
     <%= form.label :product_id %>
-    <%= form.text_field :product_id, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": product_stock.errors[:products_id].none?, "border-red-400 focus:outline-red-600": product_stock.errors[:products_id].any?}] %>
+    <%= form.text_field :product_id, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": product_stock.errors[:products_id].none?, "border-red-400 focus:outline-red-600": product_stock.errors[:products_id].any? }] %>
   </div>
 
+  <div class="flex flex-col p-4 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+    <label class="inline-flex items-center cursor-pointer">
+      <div class="relative">
+        <%= form.check_box :notification_stock, class: "sr-only peer", data: { action: "nested-fields#toggleMinStock" } %>
+        <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
+      </div>
+      <%= form.label :notification_stock, "¿Activar notificación de stock mínimo?", class: "ml-3 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+    </label>
+
+    <div class="mt-4 hidden" data-nested-fields-target="minStock">
+      <%= form.label :min_stock, "Stock mínimo para notificación", class: "block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2"%>
+      <div class="relative">
+        <%= form.number_field :min_stock,  placeholder: "Ingrese el stock mínimo", class: "block w-full px-4 py-2 bg-white border border-gray-900 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-gray-900 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-gray-900" %>
+      </div>
+    </div>
+  </div>
   <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.submit class: "text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3" %>
   </div>
 <% end %>

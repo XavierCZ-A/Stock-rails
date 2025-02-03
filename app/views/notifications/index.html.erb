@@ -1,0 +1,24 @@
+<%#= render @notifications %>
+
+<div data-controller="modal">
+  <button data-action="click->modal#show">
+    Show contact details
+  </button>
+
+  <dialog id="contact_details_modal" aria-labelledby="modal_title">
+    <header>
+      <h2 id="modal_title">
+        Contact details
+      </h2>
+      <form method="dialog">
+        <button aria-label="close">X</button>
+      </form>
+    </header>
+
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </dialog>
+</div>
