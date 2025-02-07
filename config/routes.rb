@@ -1,15 +1,16 @@
 Rails.application.routes.draw do
+  resources :supplier_contacts
+  resources :suppliers
   get "dashboard/index"
   resources :product_stocks
   resources :categories
-  resources :products
-  resources :sizes
-
-  resources :notifications, only: [:index, :show] do
-    member do
-      patch :mark_as_read
+  resources :products do
+    collection do
+      post :upload
     end
   end
+  resources :sizes
+  resources :notifications, only: [:index]
 
   namespace :authentication, path: "", as: "" do
     resources :users, only: [:create, :new]

@@ -1,5 +1,5 @@
 <aside class="sidebar">
-  <nav class="w-64 p-2 h-screen border border-gray-200 shadow-lg flex flex-col justify-between">
+  <nav class="w-64 p-2 h-full border border-gray-200 shadow-lg flex flex-col justify-between">
     <div>
       <div class="flex items-center space-x-5 my-3">
         <%= tabler_icon('rocket', size: '35') %>
@@ -7,31 +7,40 @@
       </div>
       <ul class="space-y-5">
         <li>
-          <%= link_to products_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(products_path) ? 'text-white bg-gray-800' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
-            <%= tabler_icon('bell', size: '15', class: "#{current_page?(products_path) ? 'text-white' : 'text-gray-500'}") %>
-            <span> Notifications </span>
-          <% end %>
-        </li>
-        <li>
-          <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(dashboard_index_path) ? 'text-white bg-gray-800' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(dashboard_index_path) ? 'text-white bg-[#7C5BF3]' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('home-2', size: '15', class: "#{current_page?(dashboard_index_path) ? 'text-white' : 'text-gray-500'}") %>
             <span> Dashboard </span>
           <% end %>
         </li>
         <li>
-          <%= link_to products_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(products_path) ? 'text-white bg-gray-800' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to products_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(products_path) ? 'text-white bg-[#7C5BF3]' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('cube', size: '15', class: "#{current_page?(products_path) ? 'text-white' : 'text-gray-500'}") %>
             <span> Products </span>
           <% end %>
         </li>
+        <li>
+          <%= link_to notifications_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(notifications_path) ? 'text-white bg-[#7C5BF3]' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
+            <%= tabler_icon('bell', size: '15', class: "#{current_page?(notifications_path) ? 'text-white' : 'text-gray-500'}") %>
+            <span> Notifications </span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to suppliers_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(suppliers_path) ? 'text-white bg-[#7C5BF3]' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
+            <%= tabler_icon('users-group', size: '15', class: "#{current_page?(suppliers_path) ? 'text-white' : 'text-gray-500'}") %>
+            <span> Suppliers </span>
+          <% end %>
+        </li>
       </ul>
     </div>
-
     <div class="p-2">
       <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 hover:bg-gray-200" do %>
-        <%= tabler_icon('logout', size: '15', color: " #000000" ) %>
+        <%= tabler_icon('logout', size: '15', color: " #000000") %>
         <span> Cerrar Sesion </span>
       <% end %>
     </div>
   </nav>
 </aside>
+
+<!--"#7C5BF3"-->
+<!--"#FFA466"-->
+<!--"#FE4A6B"-->

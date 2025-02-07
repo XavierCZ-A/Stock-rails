@@ -24,7 +24,7 @@ class ProductStock < ApplicationRecord
         puts "⚠️ ¡Stock bajo detectado! Creando notificación..."
         Notification.create(
           product_stock: self,
-          message: "¡Alerta! El producto #{product.name} tiene un stock bajo (#{quantity} unidades)"
+          message: "El producto #{product.name} tiene un stock bajo (#{quantity} unidades)"
         )
       end
     end

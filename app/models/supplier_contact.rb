@@ -1,0 +1,2 @@
+class SupplierContact < ApplicationRecord
+end

@@ -1,15 +1,15 @@
+require "csv"
+
 class ProductsController < ApplicationController
   before_action :set_product, only: %i[ show edit update destroy ]
   before_action :set_sizes, only: %i[ new create edit update ]
   layout 'product'
-
-
   # GET /products or /products.json
   def index
     @pagy, @products = pagy(Product.all)
     respond_to do |format|
       format.html
-      format.csv { send_data Product.to_csv, filename: "products-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv"}
+      format.csv { send_data Product.to_csv, filename: "products-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv" }
     end
 
     if params[:query_text].present?
@@ -64,8 +64,26 @@ class ProductsController < ApplicationController
     redirect_to products_path, status: :see_other, notice: "Product was successfully destroyed."
   end
 
-  private
+  def upload
+    uploaded_file = params[:csv_file]
+    if uploaded_file.present?
+      begin
+        csv_data = CSV.parse(uploaded_file.read, headers: true)
+        csv_data.each do |row|
+          # Process each row of the CSV file
+          Product.create!(name: row["name"], description: row["description"], price: row["price"], category_id: row["category_id"], created_at: row["created_at"], updated_at: row["updated_at"])
+          redirect_to products_path, notice: "Productos importados correctamente"
+          return
+        end
+      rescue  CSV::MalformedCSVError
+        redirect_to products_path, alert: "El archivo no tiene el formato correcto"
+      end
+    else
+      redirect_to products_path, alert: "Debes subir un archivo CSV"
+    end
+  end
 
+  private
   # Use callbacks to share common setup or constraints between actions.
   def set_product
     @product = Product.find(params.expect(:id))

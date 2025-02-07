@@ -1,24 +1,43 @@
-<%#= render @notifications %>
-
-<div data-controller="modal">
-  <button data-action="click->modal#show">
-    Show contact details
-  </button>
-
-  <dialog id="contact_details_modal" aria-labelledby="modal_title">
-    <header>
-      <h2 id="modal_title">
-        Contact details
+<div class="w-full bg-white overflow-hidden h-screen flex flex-col">
+  <div class="p-6 border-b border-gray-200">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-2xl font-bold flex items-center gap-2">
+        <%= tabler_icon('bell', size: '20') %>
+        Notificaciones
       </h2>
-      <form method="dialog">
-        <button aria-label="close">X</button>
-      </form>
-    </header>
+      <div class="flex gap-2">
+        <button class="px-3 py-1 text-sm bg-gray-900 text-white rounded-lg hover:bg-gray-600 transition duration-300 flex items-center gap-1">
+          <%= tabler_icon('check', size: '20') %>
+          Marcar todas como leídas
+        </button>
+      </div>
+    </div>
+    <p class="text-gray-600">Tienes <%= @notifications.count %> notificaciones sin leer</p>
+  </div>
 
-    <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-      nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-    </p>
-  </dialog>
+  <div class="p-6 flex-1 overflow-y-auto">
+    <div class="flex flex-col sm:flex-row gap-4 mb-6">
+      <div class="relative flex-grow">
+        <input
+          type="text"
+          placeholder="Buscar notificaciones..."
+          class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        <div class="absolute left-3 top-2.5 text-gray-400">
+          <%= tabler_icon('search', size: '15') %>
+        </div>
+      </div>
+      <select class="w-full sm:w-auto px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="todas">Todas</option>
+        <option value="no-leidas">No leídas</option>
+        <option value="leidas">Leídas</option>
+      </select>
+    </div>
+
+    <div class="space-y-4 pr-4">
+      <% @notifications.each do |notification| %>
+        <%= render 'notifications/notification', notification: notification %>
+      <% end %>
+    </div>
+  </div>
 </div>
