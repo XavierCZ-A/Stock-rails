@@ -14,9 +14,6 @@
     <% if @supplier_contacts.any? %>
       <% @supplier_contacts.each do |supplier_contact| %>
         <%= render supplier_contact %>
-        <p>
-          <%= link_to "Show this supplier contact", supplier_contact, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
-        </p>
       <% end %>
     <% else %>
       <p class="text-center my-10">No supplier contacts found.</p>

@@ -1,5 +1,8 @@
 class SupplierContactsController < ApplicationController
   before_action :set_supplier_contact, only: %i[ show edit update destroy ]
+  before_action :set_supplier
+
+  # before_action :find_supplier, only: [:new, :create] # DRY principle
 
   # GET /supplier_contacts or /supplier_contacts.json
   def index
@@ -22,49 +25,42 @@ class SupplierContactsController < ApplicationController
   # POST /supplier_contacts or /supplier_contacts.json
   def create
     @supplier_contact = SupplierContact.new(supplier_contact_params)
+    @supplier_contact.supplier_id = @supplier.id
+    if @supplier_contact.save
+      redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully created."
 
-    respond_to do |format|
-      if @supplier_contact.save
-        format.html { redirect_to @supplier_contact, notice: "Supplier contact was successfully created." }
-        format.json { render :show, status: :created, location: @supplier_contact }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @supplier_contact.errors, status: :unprocessable_entity }
-      end
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /supplier_contacts/1 or /supplier_contacts/1.json
   def update
-    respond_to do |format|
-      if @supplier_contact.update(supplier_contact_params)
-        format.html { redirect_to @supplier_contact, notice: "Supplier contact was successfully updated." }
-        format.json { render :show, status: :ok, location: @supplier_contact }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @supplier_contact.errors, status: :unprocessable_entity }
-      end
+    if @supplier_contact.update(supplier_contact_params)
+      redirect_to @supplier_contact, notice: "Supplier contact was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /supplier_contacts/1 or /supplier_contacts/1.json
   def destroy
     @supplier_contact.destroy!
-
-    respond_to do |format|
-      format.html { redirect_to supplier_contacts_path, status: :see_other, notice: "Supplier contact was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to supplier_contacts_path, status: :see_other, notice: "Supplier contact was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_supplier_contact
-      @supplier_contact = SupplierContact.find(params.expect(:id))
-    end
 
-    # Only allow a list of trusted parameters through.
-    def supplier_contact_params
-      params.expect(supplier_contact: [ :name, :last_name, :email, :phone ])
-    end
+  def set_supplier
+    @supplier = Supplier.find(params[:supplier_id])
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_supplier_contact
+    @supplier_contact = SupplierContact.find(params.expect(:id))
+  end
+
+  # Only allow a list of trusted parameters through.
+  def supplier_contact_params
+    params.expect(supplier_contact: [:name, :last_name, :email, :phone, :supplier_id])
+  end
 end

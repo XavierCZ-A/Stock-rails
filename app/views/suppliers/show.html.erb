@@ -1,13 +1,41 @@
 <% content_for :title, "Showing supplier" %>
 
 <div class="md:w-2/3 w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
   <h1 class="font-bold text-4xl">Showing supplier</h1>
 
   <%= render @supplier %>
+
+  <% if @supplier.supplier_contacts.empty? %>
+    <p class="text-center my-10">No contacts found.</p>
+    <%= link_to "Add contact", new_supplier_contact_path(supplier_id: @supplier.id), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+  <% else %>
+    <%= link_to "Add contact", new_supplier_contact_path(supplier_id: @supplier.id), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
+    <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-lg overflow-hidden">
+      <thead class="bg-blue-500 text-white">
+      <tr>
+        <th class="py-2 px-4 text-left font-semibold">Name</th>
+        <th class="py-2 px-4 text-left font-semibold">Last Name</th>
+        <th class="py-2 px-4 text-left font-semibold">Email</th>
+        <th class="py-2 px-4 text-left font-semibold">Phone</th>
+      </tr>
+      </thead>
+
+      <tbody class="text-gray-800">
+      <% @supplier.supplier_contacts.each do |supplier_contact| %>
+        <tr class="border-t hover:bg-gray-50">
+          <td class="py-2 px-4"><%= supplier_contact.name %></td>
+          <td class="py-2 px-4"><%= supplier_contact.last_name %></td>
+          <td class="py-2 px-4"><%= supplier_contact.email %></td>
+          <td class="py-2 px-4"><%= supplier_contact.phone %></td>
+          <td>
+            <%= link_to "details", supplier_contact_path(supplier_id: @supplier.id, id: supplier_contact.id) %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  <% end %>
+
 
   <%= link_to "Edit this supplier", edit_supplier_path(@supplier), class: "mt-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
   <%= link_to "Back to suppliers", suppliers_path, class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
