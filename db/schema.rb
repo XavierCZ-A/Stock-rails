@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_09_035431) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_13_213007) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,7 +45,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_09_035431) do
     t.datetime "updated_at", null: false
     t.boolean "notification_stock", default: false
     t.integer "min_stock"
+    t.bigint "warehouse_id", null: false
     t.index ["product_id"], name: "index_product_stocks_on_product_id"
+    t.index ["warehouse_id"], name: "index_product_stocks_on_warehouse_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -91,10 +93,18 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_09_035431) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  create_table "warehouses", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "notifications", "product_stocks"
   add_foreign_key "product_sizes", "products"
   add_foreign_key "product_sizes", "sizes"
   add_foreign_key "product_stocks", "products"
+  add_foreign_key "product_stocks", "warehouses"
   add_foreign_key "products", "categories"
   add_foreign_key "supplier_contacts", "suppliers"
 end

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :warehouses
   resources :suppliers do
     resources :supplier_contacts, as: 'contacts', path: 'contacts'
   end

@@ -1,0 +1,21 @@
+<% content_for :title, "Warehouses" %>
+
+<div class="w-full h-full overflow-hidden p-3">
+  <div class="flex justify-between items-center mb-3">
+    <h1 class="font-bold text-4xl">Warehouses</h1>
+    <%= link_to new_warehouse_path, class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-3' do %>
+      <%= tabler_icon('circle-plus', size: '20', class: "mr-2") %>
+      Add warehouse
+    <% end %>
+  </div>
+
+  <div id="warehouses" class="flex flex-wrap gap-4 justify-between max-h-[95%] overflow-y-auto scrollbar-hide">
+    <% if @warehouses.any? %>
+      <% @warehouses.each do |warehouse| %>
+        <%= render warehouse %>
+      <% end %>
+    <% else %>
+      <p class="text-center my-10">No warehouses found.</p>
+    <% end %>
+  </div>
+</div>

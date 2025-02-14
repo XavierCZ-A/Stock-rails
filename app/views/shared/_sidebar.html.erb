@@ -30,11 +30,17 @@
             <span> Suppliers </span>
           <% end %>
         </li>
+        <li>
+          <%= link_to warehouses_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(warehouses_path) ? 'text-white bg-[#7C5BF3]' : 'text-black hover:bg-gray-200 hover:rounded-lg'}" do %>
+            <%= tabler_icon('building-warehouse', size: '15', class: "#{current_page?(warehouses_path) ? 'text-white' : 'text-gray-500'}") %>
+            <span> Warehouses </span>
+          <% end %>
+        </li>
       </ul>
     </div>
     <div class="p-2">
-      <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 hover:bg-gray-200" do %>
-        <%= tabler_icon('logout', size: '15', color: " #000000") %>
+      <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm text-white rounded-lg p-3 bg-[#FFA766] hover:bg-[#FF8A33]" do %>
+        <%= tabler_icon('logout', size: '15', color: "#ffffff") %>
         <span> Cerrar Sesion </span>
       <% end %>
     </div>

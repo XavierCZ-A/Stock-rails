@@ -23,7 +23,7 @@ class ProductStocksController < ApplicationController
   def create
     @product_stock = ProductStock.new(product_stock_params)
     if @product_stock.save
-      redirect_to @product_stock, notice: "Product stock was successfully created."
+      redirect_to product_stocks_path, notice: "Product stock was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -53,6 +53,6 @@ class ProductStocksController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_stock_params
-    params.expect(product_stock: [:quantity, :product_id, :notification_stock, :min_stock])
+    params.expect(product_stock: [:quantity, :product_id, :notification_stock, :min_stock, :warehouse_id])
   end
 end
