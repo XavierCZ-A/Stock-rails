@@ -7,7 +7,7 @@
           Importar productos
           <%= file_field_tag :csv_file, accept: ".csv", class: "hidden", id: "csv_file_input", data: { file_upload_target: "input", action: "change->file-upload#toggleButton" } %>
         </label>
-        <%= form.button class: "flex items-center text-white bg-gray-800 hover:bg-gray-900 rounded-lg p-3 hidden", data: { file_upload_target: "submit" } do %>
+        <%= form.button class: "flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-3 hidden", data: { file_upload_target: "submit" } do %>
           <%= tabler_icon('upload', size: '20', class: "mr-2") %>
           <span>Subir</span>
         <% end %>
