@@ -15,4 +15,9 @@ class Authentication::SessionsController < ApplicationController
     end
   end
 
+  def destroy
+    session.delete(:user_id)
+    redirect_to new_session_path, notice: "Successful logout"
+  end
+
 end

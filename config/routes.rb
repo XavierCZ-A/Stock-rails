@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   namespace :authentication, path: "", as: "" do
     resources :users, only: [:create, :new]
-    resources :sessions, only: [:create, :new]
+    resources :sessions, only: [:create, :new, :destroy]
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
