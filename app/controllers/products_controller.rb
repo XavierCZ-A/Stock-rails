@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
   # GET /products or /products.json
   def index
     @pagy, @products = pagy(Product.all)
+
     respond_to do |format|
       format.html
       format.csv { send_data Product.to_csv, filename: "products-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv" }
