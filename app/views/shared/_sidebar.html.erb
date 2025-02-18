@@ -3,7 +3,7 @@
     <div>
       <div class="flex items-center space-x-5 my-3">
         <%= tabler_icon('rocket', size: '35') %>
-        <h1 class="text-2xl py-2 text-black font-bold hidden md:block">Admin</h1>
+        <h1 class="text-2xl py-2 text-black font-bold hidden md:block"><%= Current.user.name %></h1>
       </div>
       <ul class="space-y-5">
         <li>

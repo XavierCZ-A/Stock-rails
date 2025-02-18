@@ -1,4 +1,5 @@
 class Authentication::UsersController < ApplicationController
+  skip_before_action :pages_protect
   def new
     @user = User.new
   end
