@@ -20,11 +20,14 @@ class Product < ApplicationRecord
   scope :total_products_price, -> { sum(:price) }
 
   def self.to_csv
-    products = all
-    CSV.generate do |csv|
-      csv << column_names
+    products = all.includes(:category)
+    CSV.generate(headers: true) do |csv|
+      headers = column_names - ['category_id'] + ['category_name']
+      csv << headers
       products.each do |product|
-        csv << product.attributes.values_at(*column_names)
+        values = product.attributes.except('category_id').values
+        values << product.category&.name
+        csv << values
       end
     end
   end
