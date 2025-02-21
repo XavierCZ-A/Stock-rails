@@ -7,7 +7,7 @@
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Supplier contacts</h1>
-    <%= link_to "New supplier contact", new_supplier_contact_path, class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
+    <%= link_to "New supplier contact", new_supplier_supplier_contact_path(supplier_id: @supplier.id), class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white block font-medium" %>
   </div>
 
   <div id="supplier_contacts" class="min-w-full">

@@ -10,7 +10,6 @@ RSpec.describe "Users", type: :request do
     end
 
     it 'should create user' do
-      # user_attributes = { email: "test@example.com", password_digest: "password" }
       post users_path, params: { user: FactoryBot.attributes_for(:user) }
       expect(response).to redirect_to(products_path)
     end

@@ -2,16 +2,21 @@ require 'rails_helper'
 
 RSpec.describe "product_stocks/index", type: :view do
   let(:product) { FactoryBot.create(:product) }
+  let(:warehouse) { FactoryBot.create(:warehouse) }
 
   before(:each) do
     assign(:product_stocks, [
       ProductStock.create!(
         quantity: 2,
-        product: product
+        product: product,
+        warehouse: warehouse,
+        notification_stock: 0
       ),
       ProductStock.create!(
         quantity: 2,
-        product: product
+        product: product,
+        warehouse: warehouse,
+        notification_stock: 0
       )
     ])
   end

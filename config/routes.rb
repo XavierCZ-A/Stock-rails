@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :warehouses
   resources :suppliers do
-    resources :supplier_contacts, as: 'contacts', path: 'contacts'
+    resources :supplier_contacts, path: "contacts"
   end
   get "dashboard/index"
   resources :product_stocks

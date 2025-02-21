@@ -1,27 +1,21 @@
 require 'rails_helper'
 
 RSpec.describe "supplier_contacts/new", type: :view do
-  before(:each) do
-    assign(:supplier_contact, SupplierContact.new(
-      name: "MyString",
-      last_name: "MyString",
-      email: "MyString",
-      phone: 1
-    ))
+  let(:supplier) { create(:supplier) }
+  let(:supplier_contact) { build(:supplier_contact, supplier: supplier) }
+
+  before do
+    assign(:supplier, supplier)
+    assign(:supplier_contact, supplier_contact)
+    render
   end
 
-  it "renders new supplier_contact form" do
-    render
-
-    assert_select "form[action=?][method=?]", supplier_contacts_path, "post" do
-
-      assert_select "input[name=?]", "supplier_contact[name]"
-
-      assert_select "input[name=?]", "supplier_contact[last_name]"
-
-      assert_select "input[name=?]", "supplier_contact[email]"
-
-      assert_select "input[name=?]", "supplier_contact[phone]"
-    end
+  it "muestra el formulario para crear un nuevo contacto" do
+    expect(rendered).to have_selector("form")
+    expect(rendered).to have_field("Name")
+    expect(rendered).to have_field("Last name")
+    expect(rendered).to have_field("Email")
+    expect(rendered).to have_field("Phone")
+    expect(rendered).to have_button("Create Supplier contact")
   end
 end

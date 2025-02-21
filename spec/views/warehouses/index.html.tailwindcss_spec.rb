@@ -16,8 +16,9 @@ RSpec.describe "warehouses/index", type: :view do
 
   it "renders a list of warehouses" do
     render
-    cell_selector = 'div>p'
-    assert_select cell_selector, text: Regexp.new("Name".to_s), count: 2
-    assert_select cell_selector, text: Regexp.new("Location".to_s), count: 2
+    # Buscar "Name" en los <h2> y "Location" en los <p>
+    assert_select 'h2', text: Regexp.new("Name"), count: 2
+    assert_select 'p', text: Regexp.new("Location"), count: 2
   end
+
 end
