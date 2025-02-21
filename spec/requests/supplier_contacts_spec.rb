@@ -13,7 +13,10 @@ require 'rails_helper'
 # sticking to rails and rspec-rails APIs to keep things simple and stable.
 
 RSpec.describe "/supplier_contacts", type: :request do
-  
+  let(:supplier) { FactoryBot.create(:supplier) }
+  before do
+    login_user
+  end
   # This should return the minimal set of attributes required to create a valid
   # SupplierContact. As you add validations to SupplierContact, be sure to
   # adjust the attributes here as well.
@@ -28,7 +31,7 @@ RSpec.describe "/supplier_contacts", type: :request do
   describe "GET /index" do
     it "renders a successful response" do
       SupplierContact.create! valid_attributes
-      get supplier_contacts_url
+      get supplier_supplier_contacts_url
       expect(response).to be_successful
     end
   end
@@ -36,14 +39,14 @@ RSpec.describe "/supplier_contacts", type: :request do
   describe "GET /show" do
     it "renders a successful response" do
       supplier_contact = SupplierContact.create! valid_attributes
-      get supplier_contact_url(supplier_contact)
+      get supplier_supplier_contact_url(supplier_contact)
       expect(response).to be_successful
     end
   end
 
   describe "GET /new" do
     it "renders a successful response" do
-      get new_supplier_contact_url
+      get new_supplier_supplier_contact_path(supplier_id: supplier.id)
       expect(response).to be_successful
     end
   end
@@ -51,7 +54,7 @@ RSpec.describe "/supplier_contacts", type: :request do
   describe "GET /edit" do
     it "renders a successful response" do
       supplier_contact = SupplierContact.create! valid_attributes
-      get edit_supplier_contact_url(supplier_contact)
+      get edit_supplier_supplier_contact_url(supplier_contact)
       expect(response).to be_successful
     end
   end
@@ -60,25 +63,25 @@ RSpec.describe "/supplier_contacts", type: :request do
     context "with valid parameters" do
       it "creates a new SupplierContact" do
         expect {
-          post supplier_contacts_url, params: { supplier_contact: valid_attributes }
+          post supplier_supplier_contacts_url(supplier_id: supplier.id), params: { supplier_contact: valid_attributes }
         }.to change(SupplierContact, :count).by(1)
       end
 
       it "redirects to the created supplier_contact" do
-        post supplier_contacts_url, params: { supplier_contact: valid_attributes }
-        expect(response).to redirect_to(supplier_contact_url(SupplierContact.last))
+        post supplier_supplier_contacts_url(supplier_id: supplier.id), params: { supplier_contact: valid_attributes }
+        expect(response).to redirect_to(supplier_supplier_contact_url(SupplierContact.last))
       end
     end
 
     context "with invalid parameters" do
       it "does not create a new SupplierContact" do
         expect {
-          post supplier_contacts_url, params: { supplier_contact: invalid_attributes }
+          post supplier_supplier_contacts_url(supplier_id: supplier.id), params: { supplier_contact: invalid_attributes }
         }.to change(SupplierContact, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post supplier_contacts_url, params: { supplier_contact: invalid_attributes }
+        post supplier_supplier_contacts_url(supplier_id: supplier.id), params: { supplier_contact: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -92,23 +95,23 @@ RSpec.describe "/supplier_contacts", type: :request do
 
       it "updates the requested supplier_contact" do
         supplier_contact = SupplierContact.create! valid_attributes
-        patch supplier_contact_url(supplier_contact), params: { supplier_contact: new_attributes }
+        patch supplier_supplier_contact_url(supplier_contact), params: { supplier_contact: new_attributes }
         supplier_contact.reload
         skip("Add assertions for updated state")
       end
 
       it "redirects to the supplier_contact" do
         supplier_contact = SupplierContact.create! valid_attributes
-        patch supplier_contact_url(supplier_contact), params: { supplier_contact: new_attributes }
+        patch supplier_supplier_contact_url(supplier_contact), params: { supplier_contact: new_attributes }
         supplier_contact.reload
-        expect(response).to redirect_to(supplier_contact_url(supplier_contact))
+        expect(response).to redirect_to(supplier_supplier_contact_url(supplier_contact))
       end
     end
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         supplier_contact = SupplierContact.create! valid_attributes
-        patch supplier_contact_url(supplier_contact), params: { supplier_contact: invalid_attributes }
+        patch supplier_supplier_contact_url(supplier_contact), params: { supplier_contact: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -118,14 +121,14 @@ RSpec.describe "/supplier_contacts", type: :request do
     it "destroys the requested supplier_contact" do
       supplier_contact = SupplierContact.create! valid_attributes
       expect {
-        delete supplier_contact_url(supplier_contact)
+        delete supplier_supplier_contact_url(supplier_contact)
       }.to change(SupplierContact, :count).by(-1)
     end
 
     it "redirects to the supplier_contacts list" do
       supplier_contact = SupplierContact.create! valid_attributes
-      delete supplier_contact_url(supplier_contact)
-      expect(response).to redirect_to(supplier_contacts_url)
+      delete supplier_supplier_contact_url(supplier_contact)
+      expect(response).to redirect_to(supplier_supplier_contacts_url)
     end
   end
 end

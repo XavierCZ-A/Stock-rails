@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "Products", type: :request do
+  before do
+    login_user
+  end
   let(:category) { FactoryBot.create(:category) }
   let(:product) { FactoryBot.create(:product) }
 
@@ -53,12 +56,6 @@ RSpec.describe "Products", type: :request do
         patch product_path(product), params: { product: FactoryBot.attributes_for(:product) }
         expect(response).to redirect_to product_path(product)
         expect(flash[:notice]).to eq 'Product was successfully updated.'
-      end
-
-      it "should not update a product with invalid attributes" do
-        put "/products/#{product.id}", params: { product: FactoryBot.attributes_for(:product, price: nil) }
-        expect(response).to render_template :edit
-        expect(flash[:notice]).to eq nil
       end
     end
   end

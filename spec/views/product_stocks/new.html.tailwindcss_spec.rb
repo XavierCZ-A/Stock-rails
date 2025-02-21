@@ -17,7 +17,11 @@ RSpec.describe "product_stocks/new", type: :view do
 
       assert_select "input[name=?]", "product_stock[quantity]"
 
-      assert_select "input[name=?]", "product_stock[product_id]"
+      assert_select "select[name=?]", "product_stock[product_id]"
+
+      assert_select "select[name=?]", "product_stock[warehouse_id]"
+
+      assert_select "input[name=?]", "product_stock[notification_stock]"
     end
   end
 end

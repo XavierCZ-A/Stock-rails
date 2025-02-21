@@ -2,11 +2,14 @@ require 'rails_helper'
 
 RSpec.describe "product_stocks/edit", type: :view do
   let(:product) { FactoryBot.create(:product) }
+  let(:warehouse) { FactoryBot.create(:warehouse) }
 
   let(:product_stock) {
     ProductStock.create!(
       quantity: 1,
-      product: product
+      product: product,
+      warehouse: warehouse,
+      notification_stock: 0
     )
   }
 
@@ -21,7 +24,12 @@ RSpec.describe "product_stocks/edit", type: :view do
 
       assert_select "input[name=?]", "product_stock[quantity]"
 
-      assert_select "input[name=?]", "product_stock[product_id]"
+      assert_select "select[name=?]", "product_stock[product_id]"
+
+      assert_select "select[name=?]", "product_stock[warehouse_id]"
+
+      assert_select "input[name=?]", "product_stock[notification_stock]"
+
     end
   end
 end

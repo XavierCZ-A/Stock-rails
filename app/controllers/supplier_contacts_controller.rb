@@ -1,8 +1,6 @@
 class SupplierContactsController < ApplicationController
-  before_action :set_supplier_contact, only: %i[ show edit update destroy ]
   before_action :set_supplier
-
-  # before_action :find_supplier, only: [:new, :create] # DRY principle
+  before_action :set_supplier_contact, only: %i[ show edit update destroy ]
 
   # GET /supplier_contacts or /supplier_contacts.json
   def index
@@ -28,7 +26,6 @@ class SupplierContactsController < ApplicationController
     @supplier_contact.supplier_id = @supplier.id
     if @supplier_contact.save
       redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully created."
-
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +34,7 @@ class SupplierContactsController < ApplicationController
   # PATCH/PUT /supplier_contacts/1 or /supplier_contacts/1.json
   def update
     if @supplier_contact.update(supplier_contact_params)
-      redirect_to @supplier_contact, notice: "Supplier contact was successfully updated."
+      redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -46,7 +43,7 @@ class SupplierContactsController < ApplicationController
   # DELETE /supplier_contacts/1 or /supplier_contacts/1.json
   def destroy
     @supplier_contact.destroy!
-    redirect_to supplier_contacts_path, status: :see_other, notice: "Supplier contact was successfully destroyed."
+    redirect_to supplier_path(@supplier_contact.supplier), status: :see_other, notice: "Supplier contact was successfully destroyed."
   end
 
   private
@@ -54,7 +51,6 @@ class SupplierContactsController < ApplicationController
   def set_supplier
     @supplier = Supplier.find(params[:supplier_id])
   end
-  # Use callbacks to share common setup or constraints between actions.
   def set_supplier_contact
     @supplier_contact = SupplierContact.find(params.expect(:id))
   end
