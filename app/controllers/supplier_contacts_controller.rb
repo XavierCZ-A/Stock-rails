@@ -1,19 +1,15 @@
 class SupplierContactsController < ApplicationController
   before_action :set_supplier
-  before_action :set_supplier_contact, only: %i[ show edit update destroy ]
+  before_action :set_supplier_contact, only: %i[ edit update destroy ]
 
   # GET /supplier_contacts or /supplier_contacts.json
   def index
     @supplier_contacts = SupplierContact.all
   end
 
-  # GET /supplier_contacts/1 or /supplier_contacts/1.json
-  def show
-  end
-
   # GET /supplier_contacts/new
   def new
-    @supplier_contact = SupplierContact.new
+    @supplier_contact ||= SupplierContact.new
   end
 
   # GET /supplier_contacts/1/edit

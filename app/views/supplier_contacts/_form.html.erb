@@ -1,37 +1,65 @@
-<%= form_with(model: [ @supplier, @supplier_contact ], class: "contents") do |form| %>
+<div class="max-w-4xl mx-auto p-8">
   <% if supplier_contact.errors.any? %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
-      <h2><%= pluralize(supplier_contact.errors.count, "error") %> prohibited this supplier_contact from being saved:</h2>
-
-      <ul class="list-disc ml-6">
-        <% supplier_contact.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+    <div id="error_explanation" class="flex items-start bg-red-50 text-red-600 px-4 py-3 mb-4 rounded-md border border-red-300">
+      <div class="flex-shrink-0">
+        <%= tabler_icon('alert-circle', size: '20', class: "text-red-600 mr-3") %>
+      </div>
+      <div>
+        <h2 class="font-semibold"><%= pluralize(supplier_contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+        <ul class="list-disc ml-6 text-sm">
+          <% supplier_contact.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
     </div>
   <% end %>
+  <%= form_with(model: [@supplier, @supplier_contact], class: "contents") do |form| %>
+    <div class="flex items-center space-x-2">
+      <div class="flex-1 relative">
+        <div class="relative border <%= supplier_contact.errors[:name].any? ? 'border-red-400' : 'border-gray-700' %> rounded-md focus-within:border-gray-500">
+          <%= form.label :name, class: "absolute -top-2 left-2 -mt-px px-1 bg-white text-xs font-medium text-gray-500" %>
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <%= tabler_icon('user', size: '20') %>
+          </div>
+          <%= form.text_field :name, placeholder: "Xavier", class: ["block w-full bg-transparent border-0 pl-10 pr-3 py-2 text-black placeholder-gray-600 focus:outline-none focus:ring-0 sm:text-sm"] %>
+        </div>
+      </div>
 
-  <div class="my-5">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": supplier_contact.errors[:name].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:name].any?}] %>
-  </div>
+      <div class="flex-1 relative">
+        <div class="relative border <%= supplier_contact.errors[:last_name].any? ? 'border-red-400' : 'border-gray-700' %> rounded-md focus-within:border-gray-500">
+          <%= form.label :last_name, class: "absolute -top-2 left-2 -mt-px px-1 bg-white text-xs font-medium text-gray-500" %>
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <%= tabler_icon('user', size: '20') %>
+          </div>
+          <%= form.text_field :last_name, placeholder: "Caballero Zanabria", class: ["block w-full bg-transparent border-0 pl-10 pr-3 py-2 text-black placeholder-gray-600 focus:outline-none focus:ring-0 sm:text-sm", { "border-gray-400 focus:outline-blue-600": supplier_contact.errors[:last_name].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:last_name].any? }] %>
+        </div>
+      </div>
 
-  <div class="my-5">
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": supplier_contact.errors[:last_name].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:last_name].any?}] %>
-  </div>
+      <div class="flex-1 relative">
+        <div class="relative border <%= supplier_contact.errors[:email].any? ? 'border-red-400' : 'border-gray-700' %> rounded-md focus-within:border-gray-500">
+          <%= form.label :email, class: "absolute -top-2 left-2 -mt-px px-1 bg-white text-xs font-medium text-gray-500" %>
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <%= tabler_icon('mail', size: '20') %>
+          </div>
+          <%= form.text_field :email, placeholder: "example@gmail.com", class: ["block w-full bg-transparent border-0 pl-10 pr-3 py-2 text-black placeholder-gray-600 focus:outline-none focus:ring-0 sm:text-sm", { "border-gray-400 focus:outline-blue-600": supplier_contact.errors[:email].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:email].any? }] %>
+        </div>
+      </div>
 
-  <div class="my-5">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": supplier_contact.errors[:email].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:email].any?}] %>
-  </div>
+      <div class="flex-1 relative">
+        <div class="relative border <%= supplier_contact.errors[:phone].any? ? 'border-red-400' : 'border-gray-700' %> rounded-md focus-within:border-gray-500">
+          <%= form.label :phone, class: "absolute -top-2 left-2 -mt-px px-1 bg-white text-xs font-medium text-gray-500" %>
+          <div class="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <%= tabler_icon('user', size: '20') %>
+          </div>
+          <%= form.text_field :phone, placeholder: "3312695478", class: ["block w-full bg-transparent border-0 pl-10 pr-3 py-2 text-black placeholder-gray-600 focus:outline-none focus:ring-0 sm:text-sm", { "border-gray-400 focus:outline-blue-600": supplier_contact.errors[:phone].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:phone].any? }] %>
+        </div>
+      </div>
 
-  <div class="my-5">
-    <%= form.label :phone %>
-    <%= form.number_field :phone, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", {"border-gray-400 focus:outline-blue-600": supplier_contact.errors[:phone].none?, "border-red-400 focus:outline-red-600": supplier_contact.errors[:phone].any?}] %>
-  </div>
+      <div>
+        <%= form.submit "Create contact",  class: "rounded-md px-2.5 py-1.5 bg-[#7C5BF3] hover:bg-[#9576F5] text-white inline-block font-medium cursor-pointer" %>
+      </div>
 
-  <div class="inline">
-    <%= form.submit class: "rounded-md px-3.5 py-2.5 bg-blue-600 hover:bg-blue-500 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+    </div>
+  <% end %>
+</div>

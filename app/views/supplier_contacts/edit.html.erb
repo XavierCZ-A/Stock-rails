@@ -3,7 +3,9 @@
 <div class="md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing supplier contact</h1>
 
-  <%= render "form", supplier_contact: @supplier_contact %>
+  <%= turbo_frame_tag "contact_#{@supplier_contact.id}" do %>
+    <%= render "form", supplier_contact: @supplier_contact %>
+  <% end %>
 
   <%= link_to "Show this supplier contact", supplier_supplier_contact_path(@supplier, @supplier_contact), class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
   <%= link_to "Back to supplier contacts", supplier_supplier_contacts_path(@supplier), class: "ml-2 rounded-md px-3.5 py-2.5 bg-gray-100 hover:bg-gray-50 inline-block font-medium" %>
