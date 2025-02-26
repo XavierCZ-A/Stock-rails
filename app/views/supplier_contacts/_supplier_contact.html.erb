@@ -1,18 +1,31 @@
 <div id="<%= dom_id supplier_contact %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Name:</strong>
-    <%= supplier_contact.name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Last name:</strong>
-    <%= supplier_contact.last_name %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Email:</strong>
-    <%= supplier_contact.email %>
-  </p>
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Phone:</strong>
-    <%= supplier_contact.phone %>
-  </p>
+  <article class="flex items-center p-4 rounded-lg transition-shadow duration-300">
+    <%= user_avatar(supplier_contact.name) %>
+    <div class="flex w-full items-center justify-between p-2">
+      <section class="flex items-center gap-4 text-gray-600">
+        <header>
+          <h3 class="font-semibold text-gray-800"><%= supplier_contact.name %></h3>
+        </header>
+        <div class="flex items-center">
+          <%= tabler_icon('mail', size: '20', class: "mr-2") %>
+          <span><%= supplier_contact.email %></span>
+        </div>
+        <div class="flex items-center">
+          <%= tabler_icon('phone', size: '20', class: "mr-2") %>
+          <span><%= supplier_contact.phone %></span>
+        </div>
+      </section>
+      <div class="flex space-x-2 mt-2">
+        <%= link_to edit_supplier_supplier_contact_path(@supplier, supplier_contact), class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
+          <%= tabler_icon('edit', size: '20', class: "mr-2") %>
+          Edit
+        <% end %>
+        <%= button_to supplier_supplier_contact_path(@supplier, supplier_contact), method: :delete, class: 'flex items-center text-white bg-red-400 hover:bg-red-500 rounded-lg p-2' do %>
+          <%= tabler_icon('trash', size: '20', class: "mr-2") %>
+          Delete
+        <% end %>
+      </div>
+    </div>
+  </article>
+  <hr class="my-3 border-gray-200">
 </div>

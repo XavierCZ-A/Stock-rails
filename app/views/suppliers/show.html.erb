@@ -6,8 +6,14 @@
   <% end %>
   <div class="flex justify-between items-center">
     <h1 class="text-3xl font-bold mb-4 text-gray-800"><%= @supplier.company_name %></h1>
-    <%= link_to "New contact", new_supplier_supplier_contact_path(supplier_id: @supplier.id), class: "text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2" %>
+    <%= link_to "New contact", new_supplier_supplier_contact_path(supplier_id: @supplier.id),
+                class: "text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2",
+                data: { turbo_frame: dom_id(SupplierContact.new) }
+    %>
   </div>
+    <div>
+      <%= turbo_frame_tag SupplierContact.new %>
+    </div>
 
   <hr class="my-6 border-gray-200">
 
@@ -16,46 +22,25 @@
   </div>
 
   <% if @supplier.supplier_contacts.empty? %>
-    <div class="bg-white shadow-md rounded-lg p-8 text-center">
+    <div class="bg-white p-8 text-center">
       <div class="mb-6">
         <%= tabler_icon('user-plus', size: '100', class: "mx-auto text-gray-300") %>
       </div>
-      <h3 class="text-xl font-semibold text-gray-800 mb-2">No hay contactos</h3>
-      <p class="text-gray-600 mb-6">Este proveedor no tiene contactos agregados. ¿Quieres agregar uno ahora?</p>
+      <h3 class="text-xl font-semibold text-gray-800 mb-2">There are no contacts</h3>
+      <p class="text-gray-600 mb-6">
+        This provider has no contacts added. Do you want to add one now?</p>
       <%= link_to new_supplier_supplier_contact_path(supplier_id: @supplier.id), class: "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#7C5BF3] hover:bg-[#9576F5] text-white transition-colors" do %>
         <%= tabler_icon('user-plus', size: '15') %>
         Add contact
       <% end %>
     </div>
   <% else %>
-    <div class="max-h-90 overflow-y-auto scrollbar-hide">
-      <% @supplier.supplier_contacts.each do |supplier_contact| %>
-        <%= turbo_frame_tag "contact_#{supplier_contact.id}" do %>
-          <article class="flex items-center p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
-            <%= user_avatar(supplier_contact.name) %>
-            <div class="flex w-full items-center justify-between p-2">
-              <section class="flex items-center gap-4 text-gray-600">
-                <header>
-                  <h3 class="font-semibold text-gray-800"><%= supplier_contact.name %></h3>
-                </header>
-                <div class="flex items-center">
-                  <%= tabler_icon('mail', size: '20', class: "mr-2") %>
-                  <span><%= supplier_contact.email %></span>
-                </div>
-                <div class="flex items-center">
-                  <%= tabler_icon('phone', size: '20', class: "mr-2") %>
-                  <span><%= supplier_contact.phone %></span>
-                </div>
-              </section>
-              <footer class="mt-2">
-                <%= link_to "Update", edit_supplier_supplier_contact_path(@supplier, supplier_contact), class: "rounded-md px-2.5 py-1.5 bg-[#7C5BF3] hover:bg-[#9576F5] text-white inline-block font-medium cursor-pointer" %>
-              </footer>
-            </div>
-          </article>
+    <div id="supplier_contacts" class="max-h-90 overflow-y-auto scrollbar-hide">
+      <% @supplier_contacts.each do |supplier_contact| %>
+        <%= turbo_frame_tag supplier_contact do %>
+          <%= render partial: "supplier_contacts/supplier_contact", locals: { supplier_contact: supplier_contact} %>
         <% end %>
       <% end %>
     </div>
-
-
   <% end %>
 </div>

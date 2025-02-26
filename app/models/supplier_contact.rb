@@ -4,7 +4,7 @@ class SupplierContact < ApplicationRecord
   validates :name, presence: true, length: { minimum: 3 }, format: {
     with: /\A[a-zA-Z]+\z/,
     message: :invalid
-  }
+}
   validates :last_name, presence: true, length: { minimum: 3 }, format: {
     with: /\A[a-zA-Z]+\z/,
     message: :invalid
@@ -15,4 +15,7 @@ class SupplierContact < ApplicationRecord
   }
   validates :phone, presence: true
   validates :supplier_id, presence: true
+
+
+  scope :ordered, -> { order(id: :desc) }
 end

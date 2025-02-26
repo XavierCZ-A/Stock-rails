@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
-  resources :warehouses
+  resources :product_stocks
+  resources :warehouses do
+    get "stock", on: :member, to: "product_stocks#index"
+  end
   resources :suppliers do
     resources :supplier_contacts, path: "contacts"
   end
   get "dashboard/index"
-  resources :product_stocks
   resources :categories
   resources :products do
     collection do

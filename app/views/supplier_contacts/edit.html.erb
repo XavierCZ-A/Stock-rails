@@ -3,7 +3,7 @@
 <div class="md:w-2/3 w-full">
   <h1 class="font-bold text-4xl">Editing supplier contact</h1>
 
-  <%= turbo_frame_tag "contact_#{@supplier_contact.id}" do %>
+  <%= turbo_frame_tag @supplier_contact do %>
     <%= render "form", supplier_contact: @supplier_contact %>
   <% end %>
 

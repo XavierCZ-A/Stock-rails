@@ -6,7 +6,7 @@
   <p class="text-sm text-gray-600 mb-3"><%= notification.message %></p>
   <div class="flex justify-end gap-2">
     <% unless notification.read? %>
-      <button class="px-2 py-1 text-xs bg-gray-900 text-white rounded hover:bg-gray-600 transition duration-300 flex items-center gap-1">
+      <button class="px-2 py-1 text-xs text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded transition duration-300 flex items-center gap-1">
         <%= tabler_icon('check', size: '15' ) %>
         Marcar como leída
       </button>

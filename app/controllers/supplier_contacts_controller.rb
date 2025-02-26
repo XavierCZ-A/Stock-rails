@@ -21,7 +21,10 @@ class SupplierContactsController < ApplicationController
     @supplier_contact = SupplierContact.new(supplier_contact_params)
     @supplier_contact.supplier_id = @supplier.id
     if @supplier_contact.save
-      redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully created."
+      respond_to do |format|
+        format.html { redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully created." }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -39,7 +42,10 @@ class SupplierContactsController < ApplicationController
   # DELETE /supplier_contacts/1 or /supplier_contacts/1.json
   def destroy
     @supplier_contact.destroy!
-    redirect_to supplier_path(@supplier_contact.supplier), status: :see_other, notice: "Supplier contact was successfully destroyed."
+    respond_to do |format|
+      format.html { redirect_to supplier_path(@supplier_contact.supplier), notice: "Supplier contact was successfully destroyed." }
+      format.turbo_stream
+    end
   end
 
   private

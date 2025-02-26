@@ -9,13 +9,12 @@ class WarehousesController < ApplicationController
     @stock_by_warehouse = @warehouses.each_with_object({}) do |warehouse, hash|
       hash[warehouse.id] = warehouse.product_stocks.sum(:quantity) || 0
     end
-
     @capacity = 5000
-
   end
 
   # GET /warehouses/1 or /warehouses/1.json
   def show
+    @product_stocks = @warehouse.product_stocks
   end
 
   # GET /warehouses/new

@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   layout 'product'
   # GET /products or /products.json
   def index
-    @pagy, @products = pagy(Product.all)
+    @pagy, @products = pagy(Product.includes(:category, :product_stock))
 
     respond_to do |format|
       format.html

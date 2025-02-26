@@ -1,18 +1,14 @@
 <div id="<%= dom_id product %>">
   <tr class="bg-white border-b hover:bg-gray-200">
-    <td class="px-6 py-4 whitespace-nowrap">
-      <p class="text-sm font-medium text-gray-900">
-        <%= product.id %>
-      </p>
-    </td>
-    <td class="px-6 py-4 whitespace-nowrap">
+    <td class="flex px-6 py-4 whitespace-nowrap">
+      <%= tabler_icon('package', size: '20', class: 'text-[#7C5BF3] mr-2') %>
       <p class="text-sm font-medium text-gray-900">
         <%= product.name %>
       </p>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
       <p class="text-sm font-medium text-gray-900">
-        <%= product.price %>
+        <%= number_to_currency(product.price) %>
       </p>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
@@ -22,13 +18,18 @@
       </p>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <p class="text-sm font-medium text-gray-900">
+      <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
         <%= product.category.name %>
-      </p>
+      </span>
     </td>
-    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-      <%= link_to edit_product_path(product), class: "hover:text-gray-500" do %>
-        <%= tabler_icon('edit', size: '20') %>
+    <td class="flex justify-center whitespace-nowrap space-x-2 text-right text-sm font-medium">
+      <%= link_to edit_product_path(product), class: "flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2 " do %>
+        <%= tabler_icon('edit', size: '20', class: "mr-2") %>
+        Edit
+      <% end %>
+      <%= button_to product, method: :delete, class: 'flex items-center text-white bg-red-400 hover:bg-red-500 rounded-lg p-2' do %>
+        <%= tabler_icon('trash', size: '20', class: "mr-2") %>
+        Delete
       <% end %>
     </td>
   </tr>

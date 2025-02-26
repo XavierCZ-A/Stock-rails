@@ -9,6 +9,7 @@ class SuppliersController < ApplicationController
 
   # GET /suppliers/1 or /suppliers/1.json
   def show
+    @supplier_contacts = @supplier.supplier_contacts.ordered
   end
 
   # GET /suppliers/new
