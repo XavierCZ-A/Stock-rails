@@ -4,6 +4,10 @@ import {Controller} from "@hotwired/stimulus"
 export default class extends Controller {
     static targets = ["minStock", "error"];
 
+    connect() {
+        console.log("Connected");
+    }
+
     toggleMinStock(event) {
         if (event.target.checked) {
             this.minStockTarget.classList.remove("hidden");

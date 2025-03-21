@@ -5,6 +5,8 @@ class Product < ApplicationRecord
 
   has_many :product_sizes, dependent: :destroy
   has_many :sizes, through: :product_sizes
+  has_many :order_items, dependent: :destroy
+  has_many :purchase_orders, through: :order_items
   belongs_to :category
   has_one :product_stock, dependent: :destroy
 
@@ -18,6 +20,7 @@ class Product < ApplicationRecord
   }
 
   scope :total_products_price, -> { sum(:price) }
+  scope :order_by_date, -> { order(created_at: :desc) }
 
   def self.to_csv
     products = all.includes(:category)

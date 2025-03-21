@@ -1,0 +1,19 @@
+<div>
+  <div class="mb-6 p-4 bg-gray-50 rounded-md">
+    <h2 class="text-lg font-medium text-gray-900">Detalles de la Orden</h2>
+    <div class="mt-2 grid grid-cols-2 gap-4 text-sm">
+      <div>
+        <span class="font-medium">Número:</span> <%= @purchase_order.order_number %>
+      </div>
+      <div>
+        <span class="font-medium">Fecha:</span> <%= @purchase_order.delivery_date %>
+      </div>
+      <div>
+        <span class="font-medium">Proveedor:</span> <%= @purchase_order.supplier.company_name %>
+      </div>
+      <div>
+        <span class="font-medium">Departamento:</span> Compras
+      </div>
+    </div>
+  </div>
+</div>

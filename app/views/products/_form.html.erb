@@ -1,8 +1,3 @@
-<% if current_page?(new_product_path) %>
-  <h1 class="font-bold text-2xl">New product</h1>
-<% else %>
-  <h1 class="font-bold text-2xl">Editing product</h1>
-<% end %>
 <%= form_with(model: product, class: "contents", data: { controller: "sizes-fields" }) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
@@ -20,16 +15,16 @@
     <%= form.label :name, class: "block text-sm font-medium text-gray-700 mb-1" %>
     <div class="mt-1 relative rounded-md shadow-sm">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <%= tabler_icon('package', size: '15') %>
+        <%= tabler_icon('package', size: '15', class: "text-[#7C5BF3]") %>
       </div>
       <%= form.text_field :name, class: ["block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500", { "border-gray-400 focus:outline-blue-600": product.errors[:name].none?, "border-red-400 focus:outline-red-600": product.errors[:name].any? }] %>
     </div>
   </div>
 
-  <div class="my-5">
+  <div class="my-3">
     <%= form.label :description, class: "block text-sm font-medium text-gray-700 mb-1" %>
     <div class="mt-1 relative rounded-md shadow-sm">
-      <%= form.textarea :description, rows: 4, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full", { "border-gray-400 focus:outline-blue-600": product.errors[:description].none?, "border-red-400 focus:outline-red-600": product.errors[:description].any? }] %>
+      <%= form.textarea :description, rows: 4, class: ["block shadow rounded-md border outline-none px-3 py-2 mt-2 w-full focus:ring-indigo-500 focus:border-indigo-500", { "border-gray-400 focus:outline-blue-600": product.errors[:description].none?, "border-red-400 focus:outline-red-600": product.errors[:description].any? }] %>
     </div>
   </div>
 
@@ -37,7 +32,7 @@
     <%= form.label :price, class: "block text-sm font-medium text-gray-700 mb-1" %>
     <div class="mt-1 relative rounded-md shadow-sm">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <%= tabler_icon('currency-dollar', size: '15') %>
+        <%= tabler_icon('currency-dollar', size: '15', class: "text-[#7C5BF3]") %>
       </div>
       <%= form.text_field :price, class: ["block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500", { "border-gray-400 focus:outline-blue-600": product.errors[:price].none?, "border-red-400 focus:outline-red-600": product.errors[:price].any? }] %>
     </div>
@@ -47,7 +42,7 @@
     <%= form.label :category_id, for: 'floating_category_id', class: "block text-sm font-medium text-gray-700 mb-1" %>
     <div class="mt-1 relative rounded-md shadow-sm">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <%= tabler_icon('tag', size: '15') %>
+        <%= tabler_icon('tag', size: '15', class: "text-[#7C5BF3]") %>
       </div>
       <%= form.collection_select :category_id, Category.all, :id, :name, { prompt: "Select a category" }, { id: 'floating_category_id', class: "block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" } %>
     </div>
@@ -60,7 +55,7 @@
         <%= form.check_box :activate_sizes, class: "sr-only peer", data: { action: "sizes-fields#toggleMinStock" } %>
         <div class="w-11 h-6 bg-gray-200 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-green-500"></div>
       </div>
-      <%= form.label :activate_sizes, "¿Does your product have sizes?", class: "ml-3 text-sm font-medium text-black" %>
+      <%= form.label :activate_sizes, "¿Does your products have sizes?", class: "ml-3 text-sm font-medium text-black" %>
     </label>
 
     <div class="flex flex-wrap gap-4 mt-2 hidden" data-sizes-fields-target="sizes">

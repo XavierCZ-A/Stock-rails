@@ -1,0 +1,17 @@
+<div class="rounded-lg border border-gray-200 overflow-hidden">
+  <div class="p-4">
+    <h2 class="text-xl font-semibold">Condiciones de Pago</h2>
+  </div>
+  <div class="p-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <h3 class="font-semibold text-sm text-gray-500 mb-1">Términos de Pago</h3>
+        <p><%= @purchase_order.payment_term.name %></p>
+      </div>
+      <div>
+        <h3 class="font-semibold text-sm text-gray-500 mb-1">Método de Pago</h3>
+        <p><%= @purchase_order.total %></p>
+      </div>
+    </div>
+  </div>
+</div>

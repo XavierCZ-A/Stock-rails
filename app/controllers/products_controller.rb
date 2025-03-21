@@ -6,8 +6,8 @@ class ProductsController < ApplicationController
   layout 'product'
   # GET /products or /products.json
   def index
-    @pagy, @products = pagy(Product.includes(:category, :product_stock))
-
+    @pagy, @products = pagy(Product.includes(:category, :product_stock).order_by_date)
+    @button = "focus:outline-none text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-900"
     respond_to do |format|
       format.html
       format.csv { send_data Product.to_csv, filename: "products-#{DateTime.now.strftime("%d%m%Y%H%M")}.csv" }
@@ -44,7 +44,8 @@ class ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to products_path, notice: "Product was successfully created."
+      flash[:notice] = "Product was successfully created."
+      # redirect_to products_path, notice: "Product was successfullyk created."
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,0 +1,26 @@
+<!-- _order_item_row.html.erb -->
+<tr id="order-item-<%= item.id %>">
+  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+    <%= item.product.name %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    <%= item.quantity %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    $<%= number_with_precision(item.price, precision: 2) %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+    $<%= number_with_precision(item.total_amount, precision: 2) %>
+  </td>
+  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+    <%= link_to "Editar", edit_purchase_order_path(@purchase_order, item), class: "text-indigo-600 hover:text-indigo-900 mr-3" %>
+    <%= link_to "Eliminar", purchase_order_order_item_path(@purchase_order, item),
+                method: :delete,
+                data: {
+                  confirm: "¿Estás seguro?",
+                  turbo_method: :delete,
+                  turbo_confirm: "¿Estás seguro?"
+                },
+                class: "text-red-600 hover:text-red-900" %>
+  </td>
+</tr>

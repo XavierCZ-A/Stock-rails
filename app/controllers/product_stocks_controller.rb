@@ -1,5 +1,5 @@
 class ProductStocksController < ApplicationController
-  before_action :set_product_stock, only: %i[ show edit update destroy ]
+  before_action :set_product_stock, only: %i[ edit update destroy ]
   layout "product"
   # GET /product_stocks or /product_stocks.json
   def index
@@ -9,9 +9,6 @@ class ProductStocksController < ApplicationController
     else # Accediendo desde `/product_stocks`
       @product_stocks = ProductStock.includes(product: :category)
     end
-  end
-  # GET /product_stocks/1 or /product_stocks/1.json
-  def show
   end
 
   # GET /product_stocks/new

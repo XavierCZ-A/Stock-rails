@@ -1,0 +1,52 @@
+<% if @order_item.errors.any? %>
+  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-md mt-3">
+    <h2><%= pluralize(@order_item.errors.count, "error") %> prohibited this product from being saved:</h2>
+
+    <ul class="list-disc ml-6">
+      <% @order_item.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<div class="bg-white shadow-md rounded-lg max-w-5xl mx-auto p-6 mt-4" data-controller="order">
+  <%= render "order_details" %>
+  <%= form_with(model: [@purchase_order, @order_item], class: "contents") do |form| %>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div>
+        <%= form.label :quantity, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.number_field :quantity, data: { order_target: "quantity", action: "change->order#calculateTotal" }, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": @order_item.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": @order_item.errors[:delivery_date].any? }] %>
+      </div>
+
+      <div>
+        <%= form.label :product_id, for: 'floating_supplier_id', class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <div class="mt-1 relative rounded-md shadow-sm">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <%= tabler_icon('tag', size: '15') %>
+          </div>
+          <%= form.collection_select :product_id, Product.all, :id, :name, { prompt: "Select a supplier" }, { id: 'floating_supplier_id', class: "block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div>
+        <%= form.label :price, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.number_field :price, data: { order_target: "price", action: "change->order#calculateTotal" }, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": @order_item.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": @order_item.errors[:delivery_date].any? }] %>
+      </div>
+
+
+      <div>
+        <%= form.label :total_amount, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.number_field :total_amount, readonly: true, data: { order_target: "totalAmount" }, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": @order_item.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": @order_item.errors[:delivery_date].any? }] %>
+      </div>
+    </div>
+
+    <div class="flex justify-between">
+      <%= link_to purchase_orders_path, class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
+        Back
+      <% end %>
+      <%= form.submit class: "rounded-md px-3 py-2 bg-[#7C5BF3] hover:bg-[#9576F5] text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  <% end %>
+</div>

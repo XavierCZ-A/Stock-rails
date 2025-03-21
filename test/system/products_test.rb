@@ -10,9 +10,9 @@ class ProductsTest < ApplicationSystemTestCase
     assert_selector "h1", text: "Products"
   end
 
-  test "should create product" do
+  test "should create products" do
     visit products_url
-    click_on "New product"
+    click_on "New products"
 
     fill_in "Description", with: @product.description
     fill_in "Name", with: @product.name
@@ -25,7 +25,7 @@ class ProductsTest < ApplicationSystemTestCase
 
   test "should update Product" do
     visit product_url(@product)
-    click_on "Edit this product", match: :first
+    click_on "Edit this products", match: :first
 
     fill_in "Description", with: @product.description
     fill_in "Name", with: @product.name
@@ -38,7 +38,7 @@ class ProductsTest < ApplicationSystemTestCase
 
   test "should destroy Product" do
     visit product_url(@product)
-    click_on "Destroy this product", match: :first
+    click_on "Destroy this products", match: :first
 
     assert_text "Product was successfully destroyed"
   end

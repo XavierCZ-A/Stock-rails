@@ -4,7 +4,7 @@ export default class extends Controller {
     static targets = ["sizes"];
 
     connect() {
-        console.log("helo");
+        console.log("Product controller connected");
     }
     toggleMinStock(event) {
         if (event.target.checked) {

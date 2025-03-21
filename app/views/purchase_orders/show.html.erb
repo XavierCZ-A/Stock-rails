@@ -1,0 +1,12 @@
+<% content_for :title, "Showing purchase order" %>
+<div class="w-full p-4 md:p-6 overflow-y-auto scrollbar-hide">
+  <div class="flex flex-col gap-6">
+    <%= render "purchase_orders/components/purchase_order_header"%>
+
+    <%= render "purchase_orders/components/order_details" %>
+
+    <%= render "purchase_orders/components/delivery_details" %>
+
+    <%= render "purchase_orders/components/products_details" %>
+  </div>
+</div>

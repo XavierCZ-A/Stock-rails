@@ -8,6 +8,13 @@
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
 
+# PaymentTerm.create([
+#                      { name: "Immediate Payment", days: 0, description: "Payment at the time of receiving the invoice", active: true },
+#                      { name: "Net 15", days: 15, description: "Payment within 15 days", active: true },
+#                      { name: "Net 30", days: 30, description: "Payment within 30 days", active: true },
+#                      { name: "Net 60", days: 60, description: "Payment within 60 days", active: true }
+#                    ])
+
 # Size.create!([
 #   { name: "XS" },
 #   { name: "M" },

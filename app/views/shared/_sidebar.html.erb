@@ -1,39 +1,45 @@
 <aside class="sidebar">
-  <nav class="w-64 p-2 h-full border border-gray-200 shadow-lg flex flex-col justify-between">
+  <nav class="w-64 h-full border border-gray-200 shadow-lg flex flex-col justify-between">
     <div>
       <div class="flex items-center space-x-5 my-3">
         <%= tabler_icon('rocket', size: '35') %>
-        <h1 class="text-2xl py-2 text-black font-bold hidden md:block"><%= Current.user.name %></h1>
+        <h1 class="text-2xl py-2 text-black font-bold hidden md:block">Nvex</h1>
       </div>
-      <ul class="space-y-5">
+      <ul class="space-y-10">
         <li>
-          <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(dashboard_index_path) ? 'font-semibold' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to dashboard_index_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(dashboard_index_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('home-2', size: '20', class: "#{current_page?(dashboard_index_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
             <span> Dashboard </span>
           <% end %>
         </li>
         <li>
-          <%= link_to products_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(products_path) ? 'font-semibold' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to products_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(products_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('cube', size: '20', class: "#{current_page?(products_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
             <span> Products </span>
           <% end %>
         </li>
         <li>
-          <%= link_to notifications_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(notifications_path) ? 'font-semibold' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to notifications_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(notifications_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('bell', size: '20', class: "#{current_page?(notifications_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
             <span> Notifications </span>
           <% end %>
         </li>
         <li>
-          <%= link_to suppliers_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(suppliers_path) ? 'font-semibold' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to suppliers_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(suppliers_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('users-group', size: '20', class: "#{current_page?(suppliers_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
             <span> Suppliers </span>
           <% end %>
         </li>
         <li>
-          <%= link_to warehouses_path, class: "flex items-center space-x-3 text-sm rounded-lg p-3 #{current_page?(warehouses_path) ? 'font-semibold' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+          <%= link_to warehouses_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(warehouses_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
             <%= tabler_icon('building-warehouse', size: '20', class: "#{current_page?(warehouses_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
             <span> Warehouses </span>
+          <% end %>
+        </li>
+        <li>
+          <%= link_to purchase_orders_path, class: "flex items-center space-x-3 text-sm rounded-sm p-2 #{current_page?(purchase_orders_path) ? 'font-semibold border-r-5 border-[#7C5BF3]' : 'text-gray-400 hover:bg-gray-200 hover:rounded-lg'}" do %>
+            <%= tabler_icon('truck-delivery', size: '20', class: "#{current_page?(purchase_orders_path) ? 'text-[#7C5BF3]' : 'text-gray-400'}") %>
+            <span> Purchase orders </span>
           <% end %>
         </li>
       </ul>

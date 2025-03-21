@@ -1,25 +1,26 @@
 <div id="<%= dom_id supplier %>">
-  <div class="w-full bg-white shadow-md rounded-lg p-6 mb-8">
-    <div class="flex justify-between items-center mb-3">
-      <h1 class="text-3xl font-bold mb-4 text-gray-800"><%= supplier.company_name %></h1>
-      <%= link_to supplier, class: "flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 hover:bg-gray-50 transition-colors" do %>
-        <%= tabler_icon('users', size: '15') %>
-        View contacts
+  <tr class="bg-white border-b hover:bg-gray-200">
+    <td>
+      <%= link_to supplier_path(supplier),
+                  class: "flex px-6 py-4 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition duration-200 cursor-pointer" do %>
+        <%= tabler_icon('users', size: '20', class: 'text-indigo-600 mr-2') %>
+        <%= supplier.company_name %>
       <% end %>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-gray-600">
-      <div class="flex items-center space-x-2">
-        <%= tabler_icon('phone', size: '20') %>
-        <span>3315129273</span>
-      </div>
-      <div class="flex items-center space-x-2">
-        <%= tabler_icon('mail', size: '20') %>
-        <span>example@gmail.com</span>
-      </div>
-      <div class="flex items-center space-x-2">
-        <%= tabler_icon('map-pin', size: '20') %>
-        <span>torre motormexa periferico</span>
-      </div>
-    </div>
-  </div>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <p class="text-sm font-medium text-gray-900">
+        <%= supplier.phone %>
+      </p>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <p class="text-sm font-medium text-gray-900">
+        <%= supplier.email %>
+      </p>
+    </td>
+    <td class="px-6 py-4 whitespace-nowrap">
+      <p class="text-sm font-medium text-gray-900">
+        <%= supplier.address %>
+      </p>
+    </td>
+  </tr>
 </div>

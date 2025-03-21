@@ -1,0 +1,7 @@
+<% content_for :title, "New Order items" %>
+
+<div class="w-full p-3 overflow-y-auto scrollbar-hide">
+  <%= render "shared/step_indicator", step: params[:step].to_i %>
+  <%= render "form", order_item: @order_item %>
+</div>
+

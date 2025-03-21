@@ -1,0 +1,33 @@
+<nav class="flex justify-end items-center mb-6">
+  <div class="flex items-center space-x-2">
+    <%= form_with url: upload_products_path, multipart: true, data: { controller: "file-upload" } do |form| %>
+      <div class="flex items-center space-x-2">
+        <label class="flex items-center text-black shadow-lg rounded-lg p-2">
+          <%= tabler_icon('upload', size: '20', class: "mr-2") %>
+          Import products
+          <%= file_field_tag :csv_file, accept: ".csv", class: "hidden", id: "csv_file_input", data: { file_upload_target: "input", action: "change->file-upload#toggleButton" } %>
+        </label>
+        <%= form.button class: "flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2 hidden", data: { file_upload_target: "submit" } do %>
+          <%= tabler_icon('upload', size: '20', class: "mr-2") %>
+          <span>Subir</span>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to products_path(format: :csv), class: "flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2" do %>
+      <%= tabler_icon('file-type-csv', size: '20', class: "mr-2") %>
+      Export products
+    <% end %>
+    <%= link_to new_product_stock_path, class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
+      <%= tabler_icon('stack-3', size: '20', class: "mr-2") %>
+      Add stock
+    <% end %>
+    <%= link_to new_product_path,
+                data: { turbo_frame: 'modal' },
+                class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
+      <%= tabler_icon('box', size: '20', class: "mr-2") %>
+      Add product
+    <% end %>
+  </div>
+</nav>
+
+

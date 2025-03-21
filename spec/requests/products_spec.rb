@@ -30,7 +30,7 @@ RSpec.describe "Products", type: :request do
         }.to change(Product, :count).by(1)
       end
 
-      it 'redirects to the created product' do
+      it 'redirects to the created products' do
         post products_path, params: { product: FactoryBot.attributes_for(:product).merge(category_id: category.id) }
         expect(response).to redirect_to(products_path)
       end
@@ -52,7 +52,7 @@ RSpec.describe "Products", type: :request do
 
   describe "PATCH /Products" do
     context "with valid parameters" do
-      it "should update a product with valid attributes" do
+      it "should update a products with valid attributes" do
         patch product_path(product), params: { product: FactoryBot.attributes_for(:product) }
         expect(response).to redirect_to product_path(product)
         expect(flash[:notice]).to eq 'Product was successfully updated.'

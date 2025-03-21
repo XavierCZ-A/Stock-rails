@@ -1,10 +1,11 @@
 <div id="<%= dom_id product %>">
   <tr class="bg-white border-b hover:bg-gray-200">
     <td class="flex px-6 py-4 whitespace-nowrap">
-      <%= tabler_icon('package', size: '20', class: 'text-[#7C5BF3] mr-2') %>
-      <p class="text-sm font-medium text-gray-900">
+      <%= link_to product_path(product),
+                  class: "flex px-2 py-1 whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-800 hover:underline transition duration-200 cursor-pointer" do %>
+        <%= tabler_icon('box', size: '20', class: 'text-indigo-600 mr-2') %>
         <%= product.name %>
-      </p>
+      <% end %>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
       <p class="text-sm font-medium text-gray-900">
@@ -12,13 +13,13 @@
       </p>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <%#= product.product_stock.quantity %>
+      <%#= products.product_stock.quantity %>
       <p class="text-sm font-medium text-gray-900">
         <%= product.product_stock&.quantity || "Sin stock" %>
       </p>
     </td>
     <td class="px-6 py-4 whitespace-nowrap">
-      <span class="px-2 py-1 rounded-full text-xs bg-purple-100 text-purple-800">
+      <span class="<%= category_color(product.category.name) %> px-2 py-1 rounded-full text-xs">
         <%= product.category.name %>
       </span>
     </td>

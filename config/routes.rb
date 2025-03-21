@@ -1,25 +1,32 @@
 Rails.application.routes.draw do
-  resources :product_stocks
+
   resources :warehouses do
     get "stock", on: :member, to: "product_stocks#index"
   end
+
   resources :suppliers do
     resources :supplier_contacts, path: "contacts"
   end
-  get "dashboard/index"
-  resources :categories
+
   resources :products do
     collection do
       post :upload
     end
   end
-  resources :sizes
-  resources :notifications, only: [:index]
 
   namespace :authentication, path: "", as: "" do
     resources :users, only: [:create, :new]
     resources :sessions, only: [:create, :new, :destroy]
   end
+
+  resources :purchase_orders
+  resources :order_items, only: [:index, :new, :create]
+
+  get "dashboard/index"
+  resources :sizes
+  resources :product_stocks, except: [:show]
+  resources :categories, only: [:new, :create, :index]
+  resources :notifications, only: [:index]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

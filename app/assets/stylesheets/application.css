@@ -1,3 +1,4 @@
+
 /*
  * This is a manifest file that'll be compiled into application.css.
  *
@@ -38,18 +39,18 @@ body {
     font-weight: bold;
     border: 2px solid #ddd;
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 25px;
     text-align: center;
     transition: all 0.3s ease;
-    color: rgb(17, 121, 249);
+    color: black;
     background-color: #fff;
     cursor: pointer;
 }
 
 .pagy a:hover {
-    background-color: rgb(17, 121, 249);
+    background-color: #7C5BF3;
     color: white;
-    border-color: rgb(17, 121, 249);
+    border-color: #7C5BF3;
 }
 
 .pagy a:focus {
@@ -67,19 +68,20 @@ body {
 
 .pagy a[aria-label="Previous"]:not([aria-disabled="true"]),
 .pagy a[aria-label="Next"]:not([aria-disabled="true"]) {
-    background-color: rgb(17, 121, 249);
-    color: white;
-    border-color: rgb(17, 121, 249);
+    background-color: white;
+    border-radius: 25px;
+    color: black;
+    border-color: lightgray;
 }
 
 .pagy .current {
-    background-color: rgb(17, 121, 249);
+    background-color: #7C5BF3;
     color: white;
-    border-color: rgb(17, 121, 249);
+    border-color: #7C5BF3;
     font-weight: bold;
 }
 
 .pagy .current:hover {
-    background-color: rgb(8, 96, 200);
-    border-color: rgb(8, 96, 200);
+    background-color: #9576F5;
+    border-color: #9576F5;
 }
