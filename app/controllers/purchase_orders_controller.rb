@@ -1,6 +1,5 @@
 class PurchaseOrdersController < ApplicationController
-  # before_action :set_step, only: [:new]
-  before_action :set_purchase_order, only: %i[ show edit update destroy ]
+  before_action :set_purchase_order, only: %i[ show edit update destroy update_status ]
   layout "product"
 
   # GET /purchase_orders or /purchase_orders.json
@@ -11,8 +10,6 @@ class PurchaseOrdersController < ApplicationController
   # GET /purchase_orders/1 or /purchase_orders/1.json
   def show
     @purchase_order = PurchaseOrder.includes(order_items: :product).find(params[:id])
-    pp "Purchase order: #{@purchase_order.order_items.inspect}"
-    @current_step = (params[:step]).to_i
     @supplier = @purchase_order.supplier
   end
 
@@ -20,7 +17,7 @@ class PurchaseOrdersController < ApplicationController
   def new
     @purchase_order = PurchaseOrder.new
     @purchase_order.order_items.build # Esto añade un objeto vacío para que `fields_for` lo reconozca
-    @products = Product.all
+    @products = Product.all.for_user(Current.user)
   end
 
   # GET /purchase_orders/1/edit
@@ -52,11 +49,12 @@ class PurchaseOrdersController < ApplicationController
     redirect_to purchase_orders_path, status: :see_other, notice: "Purchase order was successfully destroyed."
   end
 
-  private
-
-  def set_step
-    redirect_to new_purchase_order_path(step: 1) unless params[:step].present?
+  def update_status
+    @purchase_order.update(status: params[:status])
+    head :ok
   end
+
+  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_purchase_order
@@ -71,8 +69,8 @@ class PurchaseOrdersController < ApplicationController
 
   def purchase_order_params
     params.require(:purchase_order).permit(
-      :delivery_date, :status, :order_date, :notes, :supplier_id, :payment_term_id,
-      order_items_attributes: [:id, :product_id, :quantity, :price, :total_amount, :_destroy]
+      :delivery_date, :status, :order_date, :notes, :supplier_id, :payment_term_id, :delivery_address, :delivery_city, :delivery_postal_code, :delivery_province,
+      order_items_attributes: [ :id, :product_id, :quantity, :price, :total_amount, :_destroy ]
     )
   end
 end

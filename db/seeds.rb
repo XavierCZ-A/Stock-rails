@@ -19,7 +19,7 @@
 #   { name: "XS" },
 #   { name: "M" },
 #   { name: "L" },
-#   { name: "XL" },
+#   { name: "XL" }
 #              ])
 
 # Category.create!([
@@ -30,4 +30,5 @@
 #   { name: "Health & Beauty" },
 #   { name: "Toys & Hobbies" },
 #   { name: "Sporting Goods" },
-#                  ])
+# ]
+# )

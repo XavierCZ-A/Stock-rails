@@ -7,6 +7,16 @@ class PurchaseOrder < ApplicationRecord
   belongs_to :supplier
   enum :status, { pending: 0, shipped: 1, delivered: 2, cancelled: 3 }
 
+  validates :delivery_date, presence: true
+  validates :supplier_id, presence: true
+  validates :order_date, presence: true
+  validates :payment_term_id, presence: true
+  validates :delivery_address, presence: true
+  validates :delivery_city, presence: true
+  validates :delivery_postal_code, presence: true
+  validates :delivery_province, presence: true
+
+
   def generate_order_number
     year = Date.today.year
 

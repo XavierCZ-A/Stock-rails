@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   resources :warehouses do
     get "stock", on: :member, to: "product_stocks#index"
   end
@@ -15,18 +14,20 @@ Rails.application.routes.draw do
   end
 
   namespace :authentication, path: "", as: "" do
-    resources :users, only: [:create, :new]
-    resources :sessions, only: [:create, :new, :destroy]
+    resources :users, only: [ :create, :new ]
+    resources :sessions, only: [ :create, :new, :destroy ]
   end
 
-  resources :purchase_orders
-  resources :order_items, only: [:index, :new, :create]
+  resources :purchase_orders do
+    patch :update_status, on: :member
+  end
+  resources :order_items, only: [ :index, :new, :create ]
 
   get "dashboard/index"
   resources :sizes
-  resources :product_stocks, except: [:show]
-  resources :categories, only: [:new, :create, :index]
-  resources :notifications, only: [:index]
+  resources :product_stocks, except: [ :show ]
+  resources :categories, only: [ :new, :create, :index ]
+  resources :notifications, only: [ :index ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

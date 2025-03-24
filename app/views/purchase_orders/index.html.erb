@@ -3,9 +3,11 @@
 <div class="w-full mx-auto p-3">
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Purchase orders</h1>
-    <%= link_to new_purchase_order_path, class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
-      <%= tabler_icon('truck-delivery', size: '20', class: "mr-2") %>
-      Create order
+    <% if @purchase_orders.any? %>
+      <%= link_to new_purchase_order_path, class: 'flex items-center text-white bg-[#7C5BF3] hover:bg-[#9576F5] rounded-lg p-2' do %>
+        <%= tabler_icon('truck-delivery', size: '20', class: "mr-2") %>
+          Create order
+      <% end %>
     <% end %>
   </div>
   <hr class="w-full border-[#E5E7EB] mt-3 mb-5" />
@@ -32,7 +34,18 @@
         </table>
       </section>
     <% else %>
-      <p class="text-center my-10">No purchase orders found.</p>
+      <div class="bg-white mx-auto p-8 text-center">
+        <div class="mb-6">
+          <%= tabler_icon('truck-delivery', size: '100', class: "mx-auto text-gray-300") %>
+        </div>
+        <h3 class="text-xl font-semibold text-gray-800 mb-2">There are no orders</h3>
+        <p class="text-gray-600 mb-6">
+          This provider has no orders added. Do you want to add one now?</p>
+        <%= link_to new_purchase_order_path, class: "inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg bg-[#7C5BF3] hover:bg-[#9576F5] text-white transition-colors" do %>
+          <%= tabler_icon('user-plus', size: '15') %>
+          Add order
+        <% end %>
+      </div>
     <% end %>
   </div>
 </div>

@@ -8,6 +8,7 @@ class Product < ApplicationRecord
   has_many :order_items, dependent: :destroy
   has_many :purchase_orders, through: :order_items
   belongs_to :category
+  belongs_to :user, default: -> { Current.user }
   has_one :product_stock, dependent: :destroy
 
   validates :name, presence: true
@@ -21,6 +22,8 @@ class Product < ApplicationRecord
 
   scope :total_products_price, -> { sum(:price) }
   scope :order_by_date, -> { order(created_at: :desc) }
+  scope :for_user, ->(user) { where(user_id: user.id) }
+
 
   def self.to_csv
     products = all.includes(:category)

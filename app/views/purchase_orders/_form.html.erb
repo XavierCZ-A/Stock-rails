@@ -13,7 +13,7 @@
       </div>
       <div>
         <%= form.label :order_date, class: "block text-sm font-medium text-gray-700 mb-1" %>
-        <%= form.date_field :order_date, value: Date.today, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_date].any? }] %>
+        <%= form.date_field :order_date, value: Date.today, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:order_date].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:order_date].any? }] %>
       </div>
     </div>
 
@@ -32,11 +32,27 @@
         <%= form.label :delivery_date, class: "block text-sm font-medium text-gray-700 mb-1" %>
         <%= form.date_field :delivery_date, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_date].any? }] %>
       </div>
+      <div>
+        <%= form.label :delivery_address, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :delivery_address, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_address].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_address].any? }] %>
+      </div>
+      <div>
+        <%= form.label :delivery_city, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :delivery_city, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_city].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_city].any? }] %>
+      </div>
+      <div>
+        <%= form.label :delivery_postal_code, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :delivery_postal_code, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_postal_code].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_postal_code].any? }] %>
+      </div>
+      <div>
+        <%= form.label :delivery_province, class: "block text-sm font-medium text-gray-700 mb-1" %>
+        <%= form.text_field :delivery_province, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_province].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_province].any? }] %>
+      </div>
     </div>
 
     <div class="mb-6">
       <%= form.label :notes, class: "block text-sm font-medium text-gray-700 mb-1" %>
-      <%= form.textarea :notes, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:delivery_date].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:delivery_date].any? }] %>
+      <%= form.textarea :notes, class: ["w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500", { "border-gray-400 focus:outline-blue-600": purchase_order.errors[:notes].none?, "border-red-400 focus:outline-red-600": purchase_order.errors[:notes].any? }] %>
     </div>
 
     <div class="mb-6">

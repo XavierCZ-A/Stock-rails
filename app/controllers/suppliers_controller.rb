@@ -55,6 +55,6 @@ class SuppliersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def supplier_params
-      params.expect(supplier: [ :company_name ])
+      params.expect(supplier: [ :company_name, :name, :email, :phone, :address ])
     end
 end

@@ -4,12 +4,11 @@ class WarehousesController < ApplicationController
 
   # GET /warehouses or /warehouses.json
   def index
-    @warehouses = Warehouse.includes(:product_stocks).all
-    # Obtener el stock total de cada warehouse
-    @stock_by_warehouse = @warehouses.each_with_object({}) do |warehouse, hash|
-      hash[warehouse.id] = warehouse.product_stocks.sum(:quantity) || 0
+    @warehouses = Warehouse.includes(:product_stocks)
+    # Utilizar el método en el modelo para calcular la ocupación de cada warehouse
+    @ocupacity_by_warehouse = @warehouses.each_with_object({}) do |warehouse, hash|
+      hash[warehouse.id] = warehouse.ocupacity_percentage
     end
-    @capacity = 5000
   end
 
   # GET /warehouses/1 or /warehouses/1.json
@@ -30,7 +29,7 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.new(warehouse_params)
     if @warehouse.save
-      redirect_to @warehouse, notice: "Warehouse was successfully created."
+      redirect_to warehouses_path, notice: "Warehouse was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -50,7 +49,6 @@ class WarehousesController < ApplicationController
     @warehouse.destroy!
     redirect_to warehouses_path, status: :see_other, notice: "Warehouse was successfully destroyed."
     head :no_content
-
   end
 
   private
@@ -62,6 +60,6 @@ class WarehousesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def warehouse_params
-    params.expect(warehouse: [:name, :location])
+    params.expect(warehouse: [ :name, :location ])
   end
 end

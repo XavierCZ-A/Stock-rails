@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_23_084838) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -78,7 +78,9 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "category_id", null: false
+    t.bigint "user_id", null: false
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.index ["user_id"], name: "index_products_on_user_id"
   end
 
   create_table "purchase_orders", force: :cascade do |t|
@@ -91,6 +93,10 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
     t.text "notes"
     t.string "order_number", null: false
     t.bigint "payment_term_id", null: false
+    t.string "delivery_address"
+    t.string "delivery_city"
+    t.string "delivery_postal_code"
+    t.string "delivery_province"
     t.index ["payment_term_id"], name: "index_purchase_orders_on_payment_term_id"
     t.index ["supplier_id"], name: "index_purchase_orders_on_supplier_id"
   end
@@ -105,7 +111,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
     t.string "name", null: false
     t.string "last_name", null: false
     t.string "email", null: false
-    t.integer "phone", null: false
+    t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "supplier_id", null: false
@@ -137,6 +143,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
     t.string "location"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "capacity"
   end
 
   add_foreign_key "notifications", "product_stocks"
@@ -147,6 +154,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_03_10_055330) do
   add_foreign_key "product_stocks", "products"
   add_foreign_key "product_stocks", "warehouses"
   add_foreign_key "products", "categories"
+  add_foreign_key "products", "users"
   add_foreign_key "purchase_orders", "payment_terms"
   add_foreign_key "purchase_orders", "suppliers"
   add_foreign_key "supplier_contacts", "suppliers"
